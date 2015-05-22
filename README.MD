@@ -1,0 +1,1 @@
+Phoca Cart Filter Module is Joomla! CMS extension. Module which displays filtering form - to filter Phoca Cart products.
