@@ -2,7 +2,7 @@
 <extension type="module" client="site" method="upgrade" version="3">
 	<name>Phoca Cart Filter</name>
 	<author>Jan Pavelka (www.phoca.cz)</author>
-	<creationDate>05/04/2015</creationDate>
+	<creationDate>08/02/2016</creationDate>
 	<authorEmail></authorEmail>
 	<authorUrl>www.phoca.cz</authorUrl>
 	<copyright>Jan Pavelka</copyright>
@@ -50,8 +50,9 @@
 	<option value="0">MOD_PHOCACART_FILTER_NO</option>
 </field>
 
-<field name="filter_category" type="radio"  class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_FILTER_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_CATEGORY_DESC">
-	<option value="1">MOD_PHOCACART_FILTER_YES</option>
+<field name="filter_category" type="list"  class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_FILTER_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_CATEGORY_DESC">
+	<option value="1">MOD_PHOCACART_FILTER_YES_ACTIVE_CATEGORY</option>
+	<option value="2">MOD_PHOCACART_FILTER_YES_ALL_CATEGORIES</option>
 	<option value="0">MOD_PHOCACART_FILTER_NO</option>
 </field>
 
