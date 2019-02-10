@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" client="site" method="upgrade" version="3">
-	<name>Phoca Cart Filter</name>
+	<name>mod_phocacart_filter</name>
 	<author>Jan Pavelka (www.phoca.cz)</author>
-	<creationDate>08/02/2016</creationDate>
+	<creationDate>10/02/2019</creationDate>
 	<authorEmail></authorEmail>
-	<authorUrl>www.phoca.cz</authorUrl>
+	<authorUrl>https://www.phoca.cz</authorUrl>
 	<copyright>Jan Pavelka</copyright>
 	<license>GNU/GPL</license>
-	<version>3.0.0</version>
+	<version>3.1.7</version>
 	<description>MOD_PHOCACART_FILTER_DESCRIPTION</description>
+	<projectName>PhocaCartFilterModule</projectName>
 
 	<files>
-		<folder>language</folder>
 		<folder>tmpl</folder>
+		<filename module="mod_phocacart_filter">index.html</filename>
 		<filename module="mod_phocacart_filter">mod_phocacart_filter.php</filename>
-		<filename>index.html</filename>
 	</files>
+
 	<languages>
 		<language tag="en-GB">language/en-GB/en-GB.mod_phocacart_filter.ini</language>
 		<language tag="en-GB">language/en-GB/en-GB.mod_phocacart_filter.sys.ini</language>
@@ -25,45 +26,107 @@
 		<fields name="params">
 			<fieldset name="basic">
 			
-<field name="filter_price" type="radio"  class="btn-group btn-group-yesno" default="1" label="MOD_PHOCACART_FILTER_FIELD_FILTER_PRICE_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_PRICE_DESC">
-	<option value="1">MOD_PHOCACART_FILTER_YES</option>
+<field name="filter_price" type="list" class="btn-group btn-group-yesno" default="1" label="MOD_PHOCACART_FILTER_FIELD_FILTER_PRICE_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_PRICE_DESC">
+	<option value="1">MOD_PHOCACART_FILTER_YES_TEXT</option>
 	<option value="0">MOD_PHOCACART_FILTER_NO</option>
+	<option value="2">MOD_PHOCACART_FILTER_YES_RANGE</option>
+	<option value="3">MOD_PHOCACART_FILTER_YES_TEXT_AND_RANGE</option>
 </field>
 			
-<field name="filter_tag" type="radio"  class="btn-group btn-group-yesno" default="1" label="MOD_PHOCACART_FILTER_FIELD_FILTER_TAGS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_TAGS_DESC">
+<field name="filter_tag" type="radio" class="btn-group btn-group-yesno" default="1" label="MOD_PHOCACART_FILTER_FIELD_FILTER_TAGS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_TAGS_DESC">
 	<option value="1">MOD_PHOCACART_FILTER_YES</option>
 	<option value="0">MOD_PHOCACART_FILTER_NO</option>
 </field>
 
-<field name="filter_manufacturer" type="radio"  class="btn-group btn-group-yesno" default="1" label="MOD_PHOCACART_FILTER_FIELD_FILTER_MANUFACTURERS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_MANUFACTURERS_DESC">
+<field name="ordering_tag" type="list" default="1" label="MOD_PHOCACART_FILTER_FIELD_TAG_ORDERING_LABEL" description="MOD_PHOCACART_FILTER_FIELD_PRODUCT_ORDERING_DESC">
+	<option value="1">MOD_PHOCACART_FILTER_ORDERING_ASC</option>
+	<option value="2">MOD_PHOCACART_FILTER_ORDERING_DESC</option>
+	<option value="3">MOD_PHOCACART_FILTER_TITLE_ASC</option>
+	<option value="4">MOD_PHOCACART_FILTER_TITLE_DESC</option>
+	<option value="5">MOD_PHOCACART_FILTER_ID_ASC</option>
+	<option value="6">MOD_PHOCACART_FILTER_ID_DESC</option>
+</field>
+
+<field name="filter_manufacturer" type="radio" class="btn-group btn-group-yesno" default="1" label="MOD_PHOCACART_FILTER_FIELD_FILTER_MANUFACTURERS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_MANUFACTURERS_DESC">
 	<option value="1">MOD_PHOCACART_FILTER_YES</option>
 	<option value="0">MOD_PHOCACART_FILTER_NO</option>
 </field>
 
-<field name="filter_attributes" type="radio"  class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_FILTER_ATTRIBUTES_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_ATTRIBUTES_DESC">
+<field name="ordering_manufacturer" type="list" default="1" label="MOD_PHOCACART_FILTER_FIELD_MANUFACTURER_ORDERING_LABEL" description="MOD_PHOCACART_FILTER_FIELD_MANUFACTURER_ORDERING_DESC">
+	<option value="1">MOD_PHOCACART_FILTER_ORDERING_ASC</option>
+	<option value="2">MOD_PHOCACART_FILTER_ORDERING_DESC</option>
+	<option value="3">MOD_PHOCACART_FILTER_TITLE_ASC</option>
+	<option value="4">MOD_PHOCACART_FILTER_TITLE_DESC</option>
+	<option value="5">MOD_PHOCACART_FILTER_ID_ASC</option>
+	<option value="6">MOD_PHOCACART_FILTER_ID_DESC</option>
+</field>
+
+<field name="manufacturer_title" default="" size="10" type="text" label="MOD_PHOCACART_FILTER_FIELD_MANUFACTURER_TITLE_LABEL" description="MOD_PHOCACART_FILTER_FIELD_MANUFACTURER_TITLE_DESC"/>
+
+<field name="filter_attributes" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_FILTER_ATTRIBUTES_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_ATTRIBUTES_DESC">
 	<option value="1">MOD_PHOCACART_FILTER_YES</option>
 	<option value="0">MOD_PHOCACART_FILTER_NO</option>
 </field>
 
-<field name="filter_specifications" type="radio"  class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_FILTER_SPECIFICATIONS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_SPECIFICATIONS_DESC">
+<field name="ordering_attribute" type="list" default="1" label="MOD_PHOCACART_FILTER_FIELD_ATTRIBUTE_ORDERING_LABEL" description="MOD_PHOCACART_FILTER_FIELD_ATTRIBUTE_ORDERING_DESC">
+	<option value="1">MOD_PHOCACART_FILTER_ID_ASC</option>
+	<option value="2">MOD_PHOCACART_FILTER_ID_DESC</option>
+	<option value="3">MOD_PHOCACART_FILTER_TITLE_ASC</option>
+	<option value="4">MOD_PHOCACART_FILTER_TITLE_DESC</option>
+</field>
+
+<field name="filter_specifications" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_FILTER_SPECIFICATIONS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_SPECIFICATIONS_DESC">
 	<option value="1">MOD_PHOCACART_FILTER_YES</option>
 	<option value="0">MOD_PHOCACART_FILTER_NO</option>
 </field>
 
-<field name="filter_category" type="list"  class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_FILTER_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_CATEGORY_DESC">
+<field name="ordering_specification" type="list" default="1" label="MOD_PHOCACART_FILTER_FIELD_SPECIFICATION_ORDERING_LABEL" description="MOD_PHOCACART_FILTER_FIELD_SPECIFICATION_ORDERING_DESC">
+	<option value="1">MOD_PHOCACART_FILTER_ID_ASC</option>
+	<option value="2">MOD_PHOCACART_FILTER_ID_DESC</option>
+	<option value="3">MOD_PHOCACART_FILTER_TITLE_ASC</option>
+	<option value="4">MOD_PHOCACART_FILTER_TITLE_DESC</option>
+</field>
+
+<field name="filter_category" type="list" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_FILTER_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_CATEGORY_DESC">
 	<option value="1">MOD_PHOCACART_FILTER_YES_ACTIVE_CATEGORY</option>
 	<option value="2">MOD_PHOCACART_FILTER_YES_ALL_CATEGORIES</option>
 	<option value="0">MOD_PHOCACART_FILTER_NO</option>
 </field>
 
-<field name="remove_parameters_cat" type="radio"  class="btn-group btn-group-yesno" default="1" label="MOD_PHOCACART_FILTER_FIELD_REMOVE_PARAMETERS_DESELECTING_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_REMOVE_PARAMETERS_DESELECTING_CATEGORY_DESC">
+<field name="remove_parameters_cat" type="radio" class="btn-group btn-group-yesno" default="1" label="MOD_PHOCACART_FILTER_FIELD_REMOVE_PARAMETERS_DESELECTING_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_REMOVE_PARAMETERS_DESELECTING_CATEGORY_DESC">
 	<option value="1">MOD_PHOCACART_FILTER_YES</option>
 	<option value="0">MOD_PHOCACART_FILTER_NO</option>
 </field>
 
+<field name="enable_color_filter" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_ENABLE_COLOR_FILTER_LABEL" description="MOD_PHOCACART_FILTER_FIELD_ENABLE_COLOR_FILTER_DESC">
+	<option value="1">MOD_PHOCACART_FILTER_YES</option>
+	<option value="0">MOD_PHOCACART_FILTER_NO</option>
+</field>
+
+<field name="enable_image_filter" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_ENABLE_IMAGE_FILTER_LABEL" description="MOD_PHOCACART_FILTER_FIELD_ENABLE_IMAGE_FILTER_DESC">
+	<option value="1">MOD_PHOCACART_FILTER_YES</option>
+	<option value="0">MOD_PHOCACART_FILTER_NO</option>
+</field>
+
+<field name="image_style_image_filter" default="" size="10" type="text" label="MOD_PHOCACART_FILTER_FIELD_IMAGE_STYLE_IMAGE_FILTER_LABEL" description="MOD_PHOCACART_FILTER_FIELD_IMAGE_STYLE_IMAGE_FILTER_DESC"/>
+
+<field name="filter_language" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_FILTER_LANGUAGE_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_LANGUAGE_DESC">
+	<option value="1">MOD_PHOCACART_FILTER_YES</option>
+	<option value="0">MOD_PHOCACART_FILTER_NO</option>
+</field>
+
+			<field name="moduleclass_sfx" type="textarea" rows="3" label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL" description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"/>
 			
+			<field name="load_component_media" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_LOAD_COMPONENT_MEDIA_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LOAD_COMPONENT_MEDIA_DESC">
+	<option value="1">MOD_PHOCACART_FILTER_YES</option>
+	<option value="0">MOD_PHOCACART_FILTER_NO</option>
+</field>
 
 			</fieldset>	
 		</fields>
 	</config>
+
+	<updateservers>
+		<server type="extension" name="MOD_PHOCACART_FILTER" priority="1"><![CDATA[https://raw.githubusercontent.com/PhocaCz/PhocaCartFilterModule/master/manifest.xml]]></server>
+	</updateservers>
 </extension>

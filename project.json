@@ -1,0 +1,19 @@
+{
+	"author": "Jan Pavelka (www.phoca.cz)",
+	"authorUrl": "https://www.phoca.cz",
+	"copyright": "Jan Pavelka",
+	"license": "GNU/GPL",
+	"projectName": "PhocaCartFilterModule",
+	"extensionName": "Phoca Cart Filter Module",
+	"projectInitials" : "PC",				  
+	"description": "Phoca Cart Filter Module - a Joomla! CMS module which displays filtering form - to filter Phoca Cart products.",
+	"projectUrl": "https://www.phoca.cz/phoca-cart-filter-module",
+	"projectDocumentationUrl": "https://www.phoca.cz/documentation/category/122-phoca-cart-filter-module",
+	"projectMainComponent": "Phoca Cart",
+	"projectMainComponentInfoUrl": "https://www.phoca.cz/project/phocacart-joomla-ecommerce",
+	"projectDemo" : {
+		"Joomla! - Phoca Cart Demo": "https://www.phoca.cz/phocacartdemo/",
+		"Joomla! - Phoca Cart - Phoca Premiere Template Demo": "https://www.phoca.cz/phocacartdemo/premiere/"
+	},
+	"projectColor": "#129ed9"
+}

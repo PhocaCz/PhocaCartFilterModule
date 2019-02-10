@@ -6,9 +6,9 @@
  * @copyright Copyright (C) Jan Pavelka www.phoca.cz
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
  */
-defined('_JEXEC') or die('Restricted access');
+defined('_JEXEC') or die;
 
-echo '<div class="ph-filter-box">';
+echo '<div class="ph-filter-box'.$moduleclass_sfx .'">';
 echo $filter->renderList();
 echo '</div>';
 ?>
