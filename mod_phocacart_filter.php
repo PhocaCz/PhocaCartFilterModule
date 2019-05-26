@@ -6,7 +6,7 @@
  * @copyright Copyright (C) Jan Pavelka www.phoca.cz
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
  */
- 
+
 defined('_JEXEC') or die;// no direct access
 
 if (!JComponentHelper::isEnabled('com_phocacart', true)) {
@@ -45,22 +45,27 @@ $document->addScript(JURI::root(true).'/media/com_phocacart/js/filter/filter.js'
 
 
 
-$filter								= new PhocacartFilter();
-$filter->category					= $params->get( 'filter_category', 0 );
-$filter->tag 						= $params->get( 'filter_tag', 1 );
-$filter->manufacturer 				= $params->get( 'filter_manufacturer', 1 );
-$filter->manufacturer_title 		= $params->get( 'manufacturer_title', '' );
-$filter->price 						= $params->get( 'filter_price', 1 );
-$filter->attributes 				= $params->get( 'filter_attributes', 0 );
-$filter->specifications 			= $params->get( 'filter_specifications', 0 );
-$filter->enable_color_filter 		= $params->get( 'enable_color_filter', 0 );
-$filter->enable_image_filter 		= $params->get( 'enable_image_filter', 0 );
-$filter->image_style_image_filter 	= $params->get( 'image_style_image_filter', 0 );
-$filter->ordering_tag 				= $params->get( 'ordering_tag', 1 );
-$filter->ordering_manufacturer 		= $params->get( 'ordering_manufacturer', 1 );
-$filter->ordering_attribute 		= $params->get( 'ordering_attribute', 1 );
-$filter->ordering_specification 	= $params->get( 'ordering_specification', 1 );
-$filter->filter_language			= $params->get( 'filter_language', 0 );
+$filter								    = new PhocacartFilter();
+$filter->category					    = $params->get( 'filter_category', 0 );
+$filter->tag 						    = $params->get( 'filter_tag', 1 );
+$filter->label 						    = $params->get( 'filter_label', 1 );
+$filter->manufacturer 				    = $params->get( 'filter_manufacturer', 1 );
+$filter->manufacturer_title 		    = $params->get( 'manufacturer_title', '' );
+$filter->price 						    = $params->get( 'filter_price', 1 );
+$filter->attributes 				    = $params->get( 'filter_attributes', 0 );
+$filter->specifications 			    = $params->get( 'filter_specifications', 0 );
+$filter->enable_color_filter 		    = $params->get( 'enable_color_filter', 0 );
+$filter->enable_image_filter 		    = $params->get( 'enable_image_filter', 0 );
+$filter->image_style_image_filter 	    = $params->get( 'image_style_image_filter', 0 );
+$filter->enable_color_filter_spec	    = $params->get( 'enable_color_filter_spec', 0 );
+$filter->enable_image_filter_spec	    = $params->get( 'enable_image_filter_spec', 0 );
+$filter->image_style_image_filter_spec 	= $params->get( 'image_style_image_filter_spec', 0 );
+$filter->ordering_tag 				    = $params->get( 'ordering_tag', 1 );
+$filter->ordering_label 				= $params->get( 'ordering_label', 1 );
+$filter->ordering_manufacturer 		    = $params->get( 'ordering_manufacturer', 1 );
+$filter->ordering_attribute 		    = $params->get( 'ordering_attribute', 1 );
+$filter->ordering_specification 	    = $params->get( 'ordering_specification', 1 );
+$filter->filter_language			    = $params->get( 'filter_language', 0 );
 
 $language = '';
 if ($filter->filter_language == 1) {
@@ -83,8 +88,8 @@ if ($p['load_component_media'] == 1) {
 // Price FROM Price TO - Input Range
 
 if ($filter->price == 2 || $filter->price == 3) {
-	
-	
+
+
 	$document->addScript(JURI::root(true).'/media/com_phocacart/js/ui/jquery-ui.slider.min.js');
 	JHTML::stylesheet('media/com_phocacart/js/ui/jquery-ui.slider.min.css' );
 
@@ -101,14 +106,14 @@ if ($filter->price == 2 || $filter->price == 3) {
 	if (!$max) {
 		$max = 0;
 	}
-	
+
 	if ($price_to[0] == '') {
 		$price_to[0] = $max;
 	}
 	if ($price_from[0] == '') {
 		$price_from[0] = $min;
 	}
-	
+
 	PhocacartRenderJs::renderFilterRange($min, $max, $price_from[0], $price_to[0]);
 }
 
@@ -146,7 +151,7 @@ if ($filter->category == 2) {
  * wait			... if we change two params at once - e.g. price_from, price_to - we change price_from and we need to wait for second
  *				    parameter (price_to), so we don't reload the site but we build the url with hel of global variable
  */
- 
+
 
 // Specific case for deselecting categories (ACTIVE CATEGORY ONLY)
 if ($p['remove_parameters_cat'] == 1) {
@@ -171,7 +176,7 @@ if ($p['remove_parameters_cat'] == 1) {
 		$jsPart1 .= '   phRemoveFilter(param, value, isItemsView, urlItemsView, uniqueValue, wait);';
 	}
 	$jsPart1 .= ' } else {'
-		.'   document.location 		= urlItemsView;'	
+		.'   document.location 		= urlItemsView;'
 		.' }';
 }
 
