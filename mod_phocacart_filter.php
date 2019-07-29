@@ -38,12 +38,6 @@ $moduleclass_sfx 					= htmlspecialchars($params->get('moduleclass_sfx'), ENT_CO
 
 
 
-$document					= JFactory::getDocument();
-$document->addScript(JURI::root(true).'/media/com_phocacart/js/filter/jquery.ba-bbq.min.js');
-$document->addScript(JURI::root(true).'/media/com_phocacart/js/filter/filter.js');
-
-
-
 
 $filter								    = new PhocacartFilter();
 $filter->category					    = $params->get( 'filter_category', 0 );
@@ -77,14 +71,9 @@ $p									= array();
 $p['remove_parameters_cat']			= $params->get( 'remove_parameters_cat', 0 );
 $p['load_component_media']			= $params->get( 'load_component_media', 0 );
 
-if ($p['load_component_media'] == 1) {
-	$media = new PhocacartRenderMedia();
-	$media->loadBootstrap();
-} else {
-	JHTML::stylesheet('media/com_phocacart/css/main.css' );
-}
 
 
+$document					= JFactory::getDocument();
 // Price FROM Price TO - Input Range
 
 if ($filter->price == 2 || $filter->price == 3) {
@@ -126,6 +115,21 @@ $urlItemsViewWithoutParams 	= PhocacartRoute::getJsItemsRouteWithoutParams();
 $config 					= JFactory::getConfig();
 $sef						= $config->get('sef', 1);
 
+
+if ($p['load_component_media'] == 1) {
+	$media = new PhocacartRenderMedia();
+	$media->loadBase();
+	$media->loadBootstrap();
+	$document->addScript(JURI::root(true).'/media/com_phocacart/js/filter/jquery.ba-bbq.min.js');
+	$document->addScript(JURI::root(true).'/media/com_phocacart/js/filter/filter.js');
+	$media->loadSpec();
+} else {
+
+	$document->addScript(JURI::root(true).'/media/com_phocacart/js/filter/jquery.ba-bbq.min.js');
+	$document->addScript(JURI::root(true).'/media/com_phocacart/js/filter/filter.js');
+
+}
+$s = PhocacartRenderStyle::getStyles();
 
 /* Difference between - Active category vs. All categories
  * Active category - Url gets ID parameter and it can be only one ID: id=1:abc
