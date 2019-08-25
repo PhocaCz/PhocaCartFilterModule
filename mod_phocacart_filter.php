@@ -60,6 +60,7 @@ $filter->ordering_manufacturer 		    = $params->get( 'ordering_manufacturer', 1 
 $filter->ordering_attribute 		    = $params->get( 'ordering_attribute', 1 );
 $filter->ordering_specification 	    = $params->get( 'ordering_specification', 1 );
 $filter->filter_language			    = $params->get( 'filter_language', 0 );
+$filter->open_filter_panel			    = $params->get( 'open_filter_panel', 1 );
 
 $language = '';
 if ($filter->filter_language == 1) {

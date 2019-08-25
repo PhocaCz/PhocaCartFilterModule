@@ -2,18 +2,19 @@
 <extension type="module" client="site" method="upgrade" version="3">
 	<name>mod_phocacart_filter</name>
 	<author>Jan Pavelka (www.phoca.cz)</author>
-	<creationDate>29/07/2019</creationDate>
+	<creationDate>25/08/2019</creationDate>
 	<authorEmail></authorEmail>
 	<authorUrl>https://www.phoca.cz</authorUrl>
 	<copyright>Jan Pavelka</copyright>
 	<license>GNU/GPL</license>
-	<version>3.3.0</version>
+	<version>3.3.2</version>
 	<description>MOD_PHOCACART_FILTER_DESCRIPTION</description>
 	<projectName>PhocaCartFilterModule</projectName>
 
 	<files>
 		<folder>tmpl</folder>
 		<filename module="mod_phocacart_filter">index.html</filename>
+		<filename module="mod_phocacart_filter">manifest.xml</filename>
 		<filename module="mod_phocacart_filter">mod_phocacart_filter.php</filename>
 	</files>
 
@@ -139,6 +140,12 @@
                 <field name="filter_language" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_FILTER_LANGUAGE_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_LANGUAGE_DESC">
                     <option value="1">MOD_PHOCACART_FILTER_YES</option>
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                </field>
+
+                <field name="open_filter_panel" type="list" class="btn-group btn-group-yesno" default="1" label="MOD_PHOCACART_FILTER_FIELD_OPEN_FILTER_PANEL_LABEL" description="MOD_PHOCACART_FILTER_FIELD_OPEN_FILTER_PANEL_DESC">
+                    <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                    <option value="2">MOD_PHOCACART_FILTER_YES_ONLY_IF_ACTIVE</option>
                 </field>
 
                 <field name="moduleclass_sfx" type="textarea" rows="3" label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL" description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"/>
