@@ -4,10 +4,10 @@
 		<description><![CDATA[ Phoca Cart Filter Module - a Joomla! CMS module which displays filtering form - to filter Phoca Cart products. ]]></description>
 		<element>mod_phocacart_filter</element>
 		<type>module</type>
-		<version>3.3.2</version>
-		<infourl title="Phoca Cart Filter Module 3.3.2">https://www.phoca.cz/</infourl>
+		<version>3.4.0</version>
+		<infourl title="Phoca Cart Filter Module 3.4.0">https://www.phoca.cz/</infourl>
 		<downloads>
-			<downloadurl type="full" format="zip">https://github.com/PhocaCz/PhocaCartFilterModule/releases/download/3.3.2/mod_phocacart_filter_v3.3.2.zip</downloadurl>
+			<downloadurl type="full" format="zip">https://github.com/PhocaCz/PhocaCartFilterModule/releases/download/3.4.0/mod_phocacart_filter_v3.4.0.zip</downloadurl>
 		</downloads>
 		<tags>
 			<tag>stable</tag>

@@ -17,27 +17,14 @@ if (!JComponentHelper::isEnabled('com_phocacart', true)) {
 
 JLoader::registerPrefix('Phocacart', JPATH_ADMINISTRATOR . '/components/com_phocacart/libraries/phocacart');
 
-/*
-if (! class_exists('PhocacartLoader')) {
-    require_once( JPATH_ADMINISTRATOR.'/components/com_phocacart/libraries/loader.php');
-}
 
-phocacartimport('phocacart.utils.settings');
-phocacartimport('phocacart.filter.filter');
-phocacartimport('phocacart.path.route');
-phocacartimport('phocacart.path.path');
-phocacartimport('phocacart.render.renderjs');
-phocacartimport('phocacart.ordering.ordering');*/
-
-$lang = JFactory::getLanguage();
+$app		= JFactory::getApplication();
+$document 	= JFactory::getDocument();
+$lang 		= JFactory::getLanguage();
 //$lang->load('com_phocacart.sys');
 $lang->load('com_phocacart');
 
-
 $moduleclass_sfx 					= htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8');
-
-
-
 
 $filter								    = new PhocacartFilter();
 $filter->category					    = $params->get( 'filter_category', 0 );
@@ -61,6 +48,14 @@ $filter->ordering_attribute 		    = $params->get( 'ordering_attribute', 1 );
 $filter->ordering_specification 	    = $params->get( 'ordering_specification', 1 );
 $filter->filter_language			    = $params->get( 'filter_language', 0 );
 $filter->open_filter_panel			    = $params->get( 'open_filter_panel', 1 );
+$filter->force_category			    	= $params->get( 'force_category', 0 );
+
+$filter->limit_attributes_category		= $params->get( 'limit_attributes_category', 0 );
+$filter->limit_tags_category			= $params->get( 'limit_tags_category', 0 );
+$filter->limit_labels_category			= $params->get( 'limit_labels_category', 0 );
+$filter->limit_price_category			= $params->get( 'limit_price_category', 0 );
+$filter->limit_manufacturers_category	= $params->get( 'limit_manufacturers_category', 0 );
+$filter->limit_specifications_category	= $params->get( 'limit_specifications_category', 0 );
 
 $language = '';
 if ($filter->filter_language == 1) {
@@ -73,64 +68,15 @@ $p['remove_parameters_cat']			= $params->get( 'remove_parameters_cat', 0 );
 $p['load_component_media']			= $params->get( 'load_component_media', 0 );
 
 
-
-$document					= JFactory::getDocument();
-// Price FROM Price TO - Input Range
-
-if ($filter->price == 2 || $filter->price == 3) {
-
-
-	$document->addScript(JURI::root(true).'/media/com_phocacart/js/ui/jquery-ui.slider.min.js');
-	JHTML::stylesheet('media/com_phocacart/js/ui/jquery-ui.slider.min.css' );
-
-	$currency 	= PhocacartCurrency::getCurrency();
-	PhocacartRenderJs::getPriceFormatJavascript($currency->price_decimals, $currency->price_dec_symbol, $currency->price_thousands_sep, $currency->price_currency_symbol, $currency->price_prefix, $currency->price_suffix, $currency->price_format);
-	$price_from	= $filter->getArrayParamValues('price_from', 'string');
-	$price_to	= $filter->getArrayParamValues('price_to', 'string');
-	$min		= PhocacartProduct::getProductPrice(2, 1, $language);// min price
-	$max		= PhocacartProduct::getProductPrice(1, 1, $language);// max price
-
-	if (!$min) {
-		$min = 0;
-	}
-	if (!$max) {
-		$max = 0;
-	}
-
-	if ($price_to[0] == '') {
-		$price_to[0] = $max;
-	}
-	if ($price_from[0] == '') {
-		$price_from[0] = $min;
-	}
-
-	PhocacartRenderJs::renderFilterRange($min, $max, $price_from[0], $price_to[0]);
-}
-
-
-$app						= JFactory::getApplication();
 $isItemsView 				= PhocacartRoute::isItemsView();
-
 $urlItemsView 				= PhocacartRoute::getJsItemsRoute($filter->category);
 $urlItemsViewWithoutParams 	= PhocacartRoute::getJsItemsRouteWithoutParams();
 $config 					= JFactory::getConfig();
 $sef						= $config->get('sef', 1);
 
 
-if ($p['load_component_media'] == 1) {
-	$media = new PhocacartRenderMedia();
-	$media->loadBase();
-	$media->loadBootstrap();
-	$document->addScript(JURI::root(true).'/media/com_phocacart/js/filter/jquery.ba-bbq.min.js');
-	$document->addScript(JURI::root(true).'/media/com_phocacart/js/filter/filter.js');
-	$media->loadSpec();
-} else {
 
-	$document->addScript(JURI::root(true).'/media/com_phocacart/js/filter/jquery.ba-bbq.min.js');
-	$document->addScript(JURI::root(true).'/media/com_phocacart/js/filter/filter.js');
 
-}
-$s = PhocacartRenderStyle::getStyles();
 
 /* Difference between - Active category vs. All categories
  * Active category - Url gets ID parameter and it can be only one ID: id=1:abc
@@ -157,7 +103,24 @@ if ($filter->category == 2) {
  *				    parameter (price_to), so we don't reload the site but we build the url with hel of global variable
  */
 
+/*
+ * IF parameter $p['remove_parameters_cat'] == 1
+ * If set in parameters to YES, when deselecting category, all other params will be removed too
+ * RECOMMENDED as mostly the parameters can be assigned to category
+ * ELSE
+ * If set in parameters to NO, when deleting category, all other parameters will stay in URL
+ * NOT RECOMMENDED as mostly all other parameters are assigned to category
+ * If we are not in items views (isItemsView = 0), there cannot be even any parameters,
+ * so we can reload to pure clean items view (urlItemsView) when we remove the category
+ *
+ * Remove category parameter from GET
+ * IF NO ITEMS VIEW - we can remove everything and go back to items view (e.g. we are in category view)
+ * IF SEF DISABLED - category id: id=5 is standard parameter and we need to remove it with help of phRemoveFilter
+ * IF SEF ENABLED - category id: 5-category is not standard parameter but alias, remove it with querystring
+ */
 
+
+/*
 // Specific case for deselecting categories (ACTIVE CATEGORY ONLY)
 if ($p['remove_parameters_cat'] == 1) {
 	// If set in parameters to YES, when deselecting category, all other params will be removed too
@@ -184,13 +147,13 @@ if ($p['remove_parameters_cat'] == 1) {
 		.'   document.location 		= urlItemsView;'
 		.' }';
 }
-
-$jsPart2 = PhocacartRenderJs::renderLoaderFullOverlay();
-
+/*
+//$jsPart2 = PhocacartRenderJs::renderLoaderFullOverlay();
+/*
 $js   = array();
 
 $js[] = ' ';
-$js[] = '/* Function phChangeFilter */';
+$js[] = '/* Function phChangeFilter ';
 $js[] = 'function phChangeFilter(param, value, formAction, formType, uniqueValue, wait) {';
 $js[] = '   var isItemsView		= '.(int)$isItemsView.';';
 $js[] = '	var urlItemsView	= \''.$urlItemsView.'\';';
@@ -217,7 +180,26 @@ $js[] = '   '.$jsPart2;
 $js[] = '}';
 $js[] = ' ';
 
-$document->addScriptDeclaration(implode("\n", $js));
+$document->addScriptDeclaration(implode("\n", $js));*/
+
+
+
+$app->getDocument()->addScriptOptions('phVarsModPhocacartFilter', array('isItemsView' => (int)$isItemsView, 'urlItemsView' => $urlItemsView, 'urlItemsViewWithoutParams' => $urlItemsViewWithoutParams, 'isSEF' => $sef ));
+$app->getDocument()->addScriptOptions('phParamsModPhocacartFilter', array('removeParametersCat' => $p['remove_parameters_cat']));
+if ($p['load_component_media'] == 1) {
+	$media = new PhocacartRenderMedia();
+	$media->loadBase();
+	$media->loadBootstrap();
+	$document->addScript(JURI::root(true).'/media/com_phocacart/js/filter/jquery.ba-bbq.min.js');
+	$document->addScript(JURI::root(true).'/media/com_phocacart/js/filter/filter.js');
+	$media->loadSpec();
+} else {
+
+	$document->addScript(JURI::root(true).'/media/com_phocacart/js/filter/jquery.ba-bbq.min.js');
+	$document->addScript(JURI::root(true).'/media/com_phocacart/js/filter/filter.js');
+
+}
+$s = PhocacartRenderStyle::getStyles();
 
 require(JModuleHelper::getLayoutPath('mod_phocacart_filter'));
 ?>
