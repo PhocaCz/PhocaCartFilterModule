@@ -2,17 +2,18 @@
 <extension type="module" client="site" method="upgrade" version="3">
 	<name>mod_phocacart_filter</name>
 	<author>Jan Pavelka (www.phoca.cz)</author>
-	<creationDate>24/10/2019</creationDate>
+	<creationDate>13/04/2020</creationDate>
 	<authorEmail></authorEmail>
 	<authorUrl>https://www.phoca.cz</authorUrl>
 	<copyright>Jan Pavelka</copyright>
 	<license>GNU/GPL</license>
-	<version>3.4.0</version>
+	<version>3.5.0</version>
 	<description>MOD_PHOCACART_FILTER_DESCRIPTION</description>
 	<projectName>PhocaCartFilterModule</projectName>
 
 	<files>
 		<folder>tmpl</folder>
+		<filename module="mod_phocacart_filter">helper.php</filename>
 		<filename module="mod_phocacart_filter">index.html</filename>
 		<filename module="mod_phocacart_filter">manifest.xml</filename>
 		<filename module="mod_phocacart_filter">mod_phocacart_filter.php</filename>
@@ -24,8 +25,11 @@
 	</languages>
 	
 	<config>
-        <fields name="params">
+        <fields name="params" addfieldpath="/administrator/components/com_phocacart/models/fields">
             <fieldset name="basic">
+
+
+                <field name="phocahead1" type="phocahead" default="MOD_PHOCACART_FILTER_FIELD_HEAD_PRICE_OPTIONS" label="" description=""/>
 
                 <field name="filter_price" type="list" class="btn-group btn-group-yesno" default="1" label="MOD_PHOCACART_FILTER_FIELD_FILTER_PRICE_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_PRICE_DESC">
                     <option value="1">MOD_PHOCACART_FILTER_YES_TEXT</option>
@@ -33,18 +37,21 @@
                     <option value="2">MOD_PHOCACART_FILTER_YES_RANGE</option>
                     <option value="3">MOD_PHOCACART_FILTER_YES_TEXT_AND_RANGE</option>
                 </field>
-				
-				<field name="limit_price_category" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_PRICE_ACTIVE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_PRICE_ACTIVE_CATEGORY_DESC">
+
+                <field name="limit_price_category" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_PRICE_ACTIVE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_PRICE_ACTIVE_CATEGORY_DESC">
                     <option value="1">MOD_PHOCACART_FILTER_YES</option>
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
                 </field>
+
+
+                <field name="phocahead2" type="phocahead" default="MOD_PHOCACART_FILTER_FIELD_HEAD_TAG_LABEL_OPTIONS" label="" description=""/>
 
                 <field name="filter_tag" type="radio" class="btn-group btn-group-yesno" default="1" label="MOD_PHOCACART_FILTER_FIELD_FILTER_TAGS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_TAGS_DESC">
                     <option value="1">MOD_PHOCACART_FILTER_YES</option>
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
                 </field>
-				
-				<field name="limit_tags_category" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_TAGS_ACTIVE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_TAGS_ACTIVE_CATEGORY_DESC">
+
+                <field name="limit_tags_category" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_TAGS_ACTIVE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_TAGS_ACTIVE_CATEGORY_DESC">
                     <option value="1">MOD_PHOCACART_FILTER_YES</option>
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
                 </field>
@@ -56,14 +63,16 @@
                     <option value="4">MOD_PHOCACART_FILTER_TITLE_DESC</option>
                     <option value="5">MOD_PHOCACART_FILTER_ID_ASC</option>
                     <option value="6">MOD_PHOCACART_FILTER_ID_DESC</option>
+                    <option value="7">MOD_PHOCACART_FILTER_PRODUCT_COUNT_ASC</option>
+                    <option value="8">MOD_PHOCACART_FILTER_PRODUCT_COUNT_DESC</option>
                 </field>
 
                 <field name="filter_label" type="radio" class="btn-group btn-group-yesno" default="1" label="MOD_PHOCACART_FILTER_FIELD_FILTER_LABELS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_LABELS_DESC">
                     <option value="1">MOD_PHOCACART_FILTER_YES</option>
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
                 </field>
-				
-				<field name="limit_labels_category" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_LABELS_ACTIVE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_LABELS_ACTIVE_CATEGORY_DESC">
+
+                <field name="limit_labels_category" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_LABELS_ACTIVE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_LABELS_ACTIVE_CATEGORY_DESC">
                     <option value="1">MOD_PHOCACART_FILTER_YES</option>
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
                 </field>
@@ -75,14 +84,27 @@
                     <option value="4">MOD_PHOCACART_FILTER_TITLE_DESC</option>
                     <option value="5">MOD_PHOCACART_FILTER_ID_ASC</option>
                     <option value="6">MOD_PHOCACART_FILTER_ID_DESC</option>
+                    <option value="7">MOD_PHOCACART_FILTER_PRODUCT_COUNT_ASC</option>
+                    <option value="8">MOD_PHOCACART_FILTER_PRODUCT_COUNT_DESC</option>
                 </field>
+
+                <field name="limit_tag_count" default="-1" size="10" type="text" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_TAG_LABEL_COUNT_PRODUCTS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_TAG_LABEL_COUNT_PRODUCTS_DESC"/>
+
+                <field name="display_tag_count" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_DISPLAY_PRODUCT_COUNT_TAGS_LABELS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_DISPLAY_PRODUCT_COUNT_TAGS_LABELS_DESC">
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                    <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                </field>
+
+
+
+                <field name="phocahead4" type="phocahead" default="MOD_PHOCACART_FILTER_FIELD_HEAD_MANUFACTURER_OPTIONS" label="" description=""/>
 
                 <field name="filter_manufacturer" type="radio" class="btn-group btn-group-yesno" default="1" label="MOD_PHOCACART_FILTER_FIELD_FILTER_MANUFACTURERS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_MANUFACTURERS_DESC">
                     <option value="1">MOD_PHOCACART_FILTER_YES</option>
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
                 </field>
-				
-				<field name="limit_manufacturers_category" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_MANUFACTURERS_ACTIVE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_MANUFACTURERS_ACTIVE_CATEGORY_DESC">
+
+                <field name="limit_manufacturers_category" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_MANUFACTURERS_ACTIVE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_MANUFACTURERS_ACTIVE_CATEGORY_DESC">
                     <option value="1">MOD_PHOCACART_FILTER_YES</option>
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
                 </field>
@@ -94,16 +116,30 @@
                     <option value="4">MOD_PHOCACART_FILTER_TITLE_DESC</option>
                     <option value="5">MOD_PHOCACART_FILTER_ID_ASC</option>
                     <option value="6">MOD_PHOCACART_FILTER_ID_DESC</option>
+                    <option value="7">MOD_PHOCACART_FILTER_PRODUCT_COUNT_ASC</option>
+                    <option value="8">MOD_PHOCACART_FILTER_PRODUCT_COUNT_DESC</option>
                 </field>
 
                 <field name="manufacturer_title" default="" size="10" type="text" label="MOD_PHOCACART_FILTER_FIELD_MANUFACTURER_TITLE_LABEL" description="MOD_PHOCACART_FILTER_FIELD_MANUFACTURER_TITLE_DESC"/>
+
+
+                <field name="limit_manufacturer_count" default="-1" size="10" type="text" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_MANUFACTURER_COUNT_PRODUCTS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_MANUFACTURER_COUNT_PRODUCTS_DESC"/>
+
+                <field name="display_manufacturer_count" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_DISPLAY_PRODUCT_COUNT_MANUFACTURERS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_DISPLAY_PRODUCT_COUNT_MANUFACTURERS_DESC">
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                    <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                </field>
+
+
+
+                <field name="phocahead5" type="phocahead" default="MOD_PHOCACART_FILTER_FIELD_HEAD_ATTRIBUTE_OPTIONS" label="" description=""/>
 
                 <field name="filter_attributes" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_FILTER_ATTRIBUTES_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_ATTRIBUTES_DESC">
                     <option value="1">MOD_PHOCACART_FILTER_YES</option>
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
                 </field>
-				
-				<field name="limit_attributes_category" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_ATTRIBUTES_ACTIVE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_ATTRIBUTES_ACTIVE_CATEGORY_DESC">
+
+                <field name="limit_attributes_category" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_ATTRIBUTES_ACTIVE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_ATTRIBUTES_ACTIVE_CATEGORY_DESC">
                     <option value="1">MOD_PHOCACART_FILTER_YES</option>
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
                 </field>
@@ -113,16 +149,19 @@
                     <option value="2">MOD_PHOCACART_FILTER_ID_DESC</option>
                     <option value="3">MOD_PHOCACART_FILTER_TITLE_ASC</option>
                     <option value="4">MOD_PHOCACART_FILTER_TITLE_DESC</option>
-					<option value="7">MOD_PHOCACART_FILTER_ORDERING_ASC</option>
+                    <option value="7">MOD_PHOCACART_FILTER_ORDERING_ASC</option>
                     <option value="8">MOD_PHOCACART_FILTER_ORDERING_DESC</option>
                 </field>
+
+
+                <field name="phocahead6" type="phocahead" default="MOD_PHOCACART_FILTER_FIELD_HEAD_SPECIFICATION_OPTIONS" label="" description=""/>
 
                 <field name="filter_specifications" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_FILTER_SPECIFICATIONS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_SPECIFICATIONS_DESC">
                     <option value="1">MOD_PHOCACART_FILTER_YES</option>
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
                 </field>
-				
-				<field name="limit_specifications_category" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_SPECIFICATIONS_ACTIVE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_SPECIFICATIONS_ACTIVE_CATEGORY_DESC">
+
+                <field name="limit_specifications_category" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_SPECIFICATIONS_ACTIVE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_SPECIFICATIONS_ACTIVE_CATEGORY_DESC">
                     <option value="1">MOD_PHOCACART_FILTER_YES</option>
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
                 </field>
@@ -135,18 +174,82 @@
                     <option value="4">MOD_PHOCACART_FILTER_TITLE_DESC</option>
                 </field>
 
+
+                <field name="phocahead3" type="phocahead" default="MOD_PHOCACART_FILTER_FIELD_HEAD_PARAMETER_OPTIONS" label="" description=""/>
+
+                <field name="filter_parameter" type="radio" class="btn-group btn-group-yesno" default="1" label="MOD_PHOCACART_FILTER_FIELD_FILTER_PARAMETERS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_PARAMETERS_DESC">
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                    <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                </field>
+
+                <field name="limit_parameters_category" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_PARAMETERS_ACTIVE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_PARAMETERS_ACTIVE_CATEGORY_DESC">
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                    <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                </field>
+
+                <field name="ordering_parameter" type="list" default="1" label="MOD_PHOCACART_FILTER_FIELD_PARAMETER_ORDERING_LABEL" description="MOD_PHOCACART_FILTER_FIELD_PARAMETER_ORDERING_DESC">
+                    <option value="1">MOD_PHOCACART_FILTER_ORDERING_ASC</option>
+                    <option value="2">MOD_PHOCACART_FILTER_ORDERING_DESC</option>
+                    <option value="3">MOD_PHOCACART_FILTER_TITLE_ASC</option>
+                    <option value="4">MOD_PHOCACART_FILTER_TITLE_DESC</option>
+                    <option value="5">MOD_PHOCACART_FILTER_ID_ASC</option>
+                    <option value="6">MOD_PHOCACART_FILTER_ID_DESC</option>
+                    <option value="7">MOD_PHOCACART_FILTER_PRODUCT_COUNT_ASC</option>
+                    <option value="8">MOD_PHOCACART_FILTER_PRODUCT_COUNT_DESC</option>
+                </field>
+
+                <field name="limit_parameter_count" default="-1" size="10" type="text" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_PARAMETER_COUNT_PRODUCTS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_PARAMETER_COUNT_PRODUCTS_DESC"/>
+
+                <field name="display_parameter_count" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_DISPLAY_PRODUCT_COUNT_PARAMETERS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_DISPLAY_PRODUCT_COUNT_PARAMETERS_DESC">
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                    <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                </field>
+
+
+                <field name="phocahead7" type="phocahead" default="MOD_PHOCACART_FILTER_FIELD_HEAD_CATEGORY_OPTIONS" label="" description=""/>
+
                 <field name="filter_category" type="list" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_FILTER_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_CATEGORY_DESC">
                     <option value="1">MOD_PHOCACART_FILTER_YES_ACTIVE_CATEGORY</option>
                     <option value="2">MOD_PHOCACART_FILTER_YES_ALL_CATEGORIES</option>
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
                 </field>
-				
-				<field name="force_category" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_FORCE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FORCE_CATEGORY_DESC">
+
+                <field name="force_category" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_FORCE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FORCE_CATEGORY_DESC">
                     <option value="1">MOD_PHOCACART_FILTER_YES</option>
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
                 </field>
 
                 <field name="remove_parameters_cat" type="radio" class="btn-group btn-group-yesno" default="1" label="MOD_PHOCACART_FILTER_FIELD_REMOVE_PARAMETERS_DESELECTING_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_REMOVE_PARAMETERS_DESELECTING_CATEGORY_DESC">
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                    <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                </field>
+
+
+                <field name="limit_category_count" default="-1" size="10" type="text" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_CATEGORY_COUNT_PRODUCTS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_CATEGORY_COUNT_PRODUCTS_DESC"/>
+
+                <field name="display_category_count" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_DISPLAY_PRODUCT_COUNT_CATEGORIES_LABEL" description="MOD_PHOCACART_FILTER_FIELD_DISPLAY_PRODUCT_COUNT_CATEGORIES_DESC">
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                    <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                </field>
+
+                <field name="ordering_category" type="list" default="1" label="MOD_PHOCACART_FILTER_FIELD_CATEGORY_ORDERING_LABEL" description="MOD_PHOCACART_FILTER_FIELD_CATEGORY_ORDERING_DESC">
+                    <option value="1">MOD_PHOCACART_FILTER_ORDERING_ASC</option>
+                    <option value="2">MOD_PHOCACART_FILTER_ORDERING_DESC</option>
+                    <option value="3">MOD_PHOCACART_FILTER_TITLE_ASC</option>
+                    <option value="4">MOD_PHOCACART_FILTER_TITLE_DESC</option>
+                    <option value="5">MOD_PHOCACART_FILTER_DATE_ASC</option>
+                    <option value="6">MOD_PHOCACART_FILTER_DATE_DESC</option>
+                    <option value="7">MOD_PHOCACART_FILTER_PRODUCT_COUNT_ASC</option>
+                    <option value="8">MOD_PHOCACART_FILTER_PRODUCT_COUNT_DESC</option>
+                </field>
+
+
+
+
+
+                <field name="phocahead8" type="phocahead" default="MOD_PHOCACART_FILTER_FIELD_HEAD_GENERAL_OPTIONS" label="" description=""/>
+
+                <field name="check_available_products" type="radio" class="btn-group btn-group-yesno" default="1" label="MOD_PHOCACART_FILTER_FIELD_CHECK_AVAILABLE_PRODUCTS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_CHECK_AVAILABLE_PRODUCTS_DESC">
                     <option value="1">MOD_PHOCACART_FILTER_YES</option>
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
                 </field>
@@ -174,6 +277,7 @@
                 </field>
 
                 <field name="image_style_image_filter_spec" default="" size="10" type="text" label="MOD_PHOCACART_FILTER_FIELD_IMAGE_STYLE_IMAGE_FILTER_SPEC_LABEL" description="MOD_PHOCACART_FILTER_FIELD_IMAGE_STYLE_IMAGE_FILTER_SPEC_DESC"/>
+
 
                 <field name="filter_language" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_FILTER_LANGUAGE_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_LANGUAGE_DESC">
                     <option value="1">MOD_PHOCACART_FILTER_YES</option>

@@ -30,6 +30,7 @@ $filter								    = new PhocacartFilter();
 $filter->category					    = $params->get( 'filter_category', 0 );
 $filter->tag 						    = $params->get( 'filter_tag', 1 );
 $filter->label 						    = $params->get( 'filter_label', 1 );
+$filter->parameter						= $params->get( 'filter_parameter', 1 );
 $filter->manufacturer 				    = $params->get( 'filter_manufacturer', 1 );
 $filter->manufacturer_title 		    = $params->get( 'manufacturer_title', '' );
 $filter->price 						    = $params->get( 'filter_price', 1 );
@@ -43,32 +44,44 @@ $filter->enable_image_filter_spec	    = $params->get( 'enable_image_filter_spec'
 $filter->image_style_image_filter_spec 	= $params->get( 'image_style_image_filter_spec', 0 );
 $filter->ordering_tag 				    = $params->get( 'ordering_tag', 1 );
 $filter->ordering_label 				= $params->get( 'ordering_label', 1 );
+$filter->ordering_parameter 			= $params->get( 'ordering_parameter', 1 );
 $filter->ordering_manufacturer 		    = $params->get( 'ordering_manufacturer', 1 );
 $filter->ordering_attribute 		    = $params->get( 'ordering_attribute', 1 );
 $filter->ordering_specification 	    = $params->get( 'ordering_specification', 1 );
+$filter->ordering_category 	    		= $params->get( 'ordering_category', 1 );
 $filter->filter_language			    = $params->get( 'filter_language', 0 );
 $filter->open_filter_panel			    = $params->get( 'open_filter_panel', 1 );
 $filter->force_category			    	= $params->get( 'force_category', 0 );
-
 $filter->limit_attributes_category		= $params->get( 'limit_attributes_category', 0 );
 $filter->limit_tags_category			= $params->get( 'limit_tags_category', 0 );
 $filter->limit_labels_category			= $params->get( 'limit_labels_category', 0 );
+$filter->limit_parameters_category		= $params->get( 'limit_parameters_category', 0 );
 $filter->limit_price_category			= $params->get( 'limit_price_category', 0 );
 $filter->limit_manufacturers_category	= $params->get( 'limit_manufacturers_category', 0 );
 $filter->limit_specifications_category	= $params->get( 'limit_specifications_category', 0 );
+$filter->limit_category_count			= $params->get( 'limit_category_count', -1 );
+$filter->display_category_count			= $params->get( 'display_category_count', 0 );
+$filter->limit_tag_count				= $params->get( 'limit_tag_count', -1 );
+$filter->display_tag_count				= $params->get( 'display_tag_count', 0 );
+$filter->limit_parameter_count			= $params->get( 'limit_parameter_count', -1 );
+$filter->display_parameter_count		= $params->get( 'display_parameter_count', 0 );
+$filter->limit_manufacturer_count		= $params->get( 'limit_manufacturer_count', -1 );
+$filter->display_manufacturer_count		= $params->get( 'display_manufacturer_count', 0 );
+$filter->check_available_products		= $params->get( 'check_available_products', 1 );
+$filter->remove_parameters_cat			= $params->get( 'remove_parameters_cat', 0 );
+$filter->load_component_media			= $params->get( 'load_component_media', 0 );
 
 $language = '';
 if ($filter->filter_language == 1) {
-	//$lang 		= JFactory::getLanguage();
 	$language	= $lang->getTag();
 }
 
-$p									= array();
-$p['remove_parameters_cat']			= $params->get( 'remove_parameters_cat', 0 );
-$p['load_component_media']			= $params->get( 'load_component_media', 0 );
+
+
 
 
 $isItemsView 				= PhocacartRoute::isItemsView();
+
 $urlItemsView 				= PhocacartRoute::getJsItemsRoute($filter->category);
 $urlItemsViewWithoutParams 	= PhocacartRoute::getJsItemsRouteWithoutParams();
 $config 					= JFactory::getConfig();
@@ -184,22 +197,16 @@ $document->addScriptDeclaration(implode("\n", $js));*/
 
 
 
-$app->getDocument()->addScriptOptions('phVarsModPhocacartFilter', array('isItemsView' => (int)$isItemsView, 'urlItemsView' => $urlItemsView, 'urlItemsViewWithoutParams' => $urlItemsViewWithoutParams, 'isSEF' => $sef ));
-$app->getDocument()->addScriptOptions('phParamsModPhocacartFilter', array('removeParametersCat' => $p['remove_parameters_cat']));
-if ($p['load_component_media'] == 1) {
-	$media = new PhocacartRenderMedia();
+$document->addScriptOptions('phVarsModPhocacartFilter', array('isItemsView' => (int)$isItemsView, 'urlItemsView' => $urlItemsView, 'urlItemsViewWithoutParams' => $urlItemsViewWithoutParams, 'isSEF' => $sef ));
+$document->addScriptOptions('phParamsModPhocacartFilter', array('removeParametersCat' => (int)$filter->remove_parameters_cat));
+
+$media = PhocacartRenderMedia::getInstance('main');
+$s = PhocacartRenderStyle::getStyles();
+if ($filter->load_component_media == 1) {
 	$media->loadBase();
 	$media->loadBootstrap();
-	$document->addScript(JURI::root(true).'/media/com_phocacart/js/filter/jquery.ba-bbq.min.js');
-	$document->addScript(JURI::root(true).'/media/com_phocacart/js/filter/filter.js');
 	$media->loadSpec();
-} else {
-
-	$document->addScript(JURI::root(true).'/media/com_phocacart/js/filter/jquery.ba-bbq.min.js');
-	$document->addScript(JURI::root(true).'/media/com_phocacart/js/filter/filter.js');
-
 }
-$s = PhocacartRenderStyle::getStyles();
 
 require(JModuleHelper::getLayoutPath('mod_phocacart_filter'));
 ?>
