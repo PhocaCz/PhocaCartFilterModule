@@ -69,7 +69,7 @@ $filter->limit_manufacturer_count		= $params->get( 'limit_manufacturer_count', -
 $filter->display_manufacturer_count		= $params->get( 'display_manufacturer_count', 0 );
 $filter->check_available_products		= $params->get( 'check_available_products', 1 );
 $filter->remove_parameters_cat			= $params->get( 'remove_parameters_cat', 0 );
-$filter->load_component_media			= $params->get( 'load_component_media', 0 );
+$filter->load_component_media			= $params->get( 'load_component_media', 1 );
 
 $language = '';
 if ($filter->filter_language == 1) {
@@ -200,9 +200,10 @@ $document->addScriptDeclaration(implode("\n", $js));*/
 $document->addScriptOptions('phVarsModPhocacartFilter', array('isItemsView' => (int)$isItemsView, 'urlItemsView' => $urlItemsView, 'urlItemsViewWithoutParams' => $urlItemsViewWithoutParams, 'isSEF' => $sef ));
 $document->addScriptOptions('phParamsModPhocacartFilter', array('removeParametersCat' => (int)$filter->remove_parameters_cat));
 
-$media = PhocacartRenderMedia::getInstance('main');
+
 $s = PhocacartRenderStyle::getStyles();
 if ($filter->load_component_media == 1) {
+	$media = PhocacartRenderMedia::getInstance('main');
 	$media->loadBase();
 	$media->loadBootstrap();
 	$media->loadSpec();
