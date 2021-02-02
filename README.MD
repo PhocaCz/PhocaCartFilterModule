@@ -2,7 +2,7 @@
 
 
 
-![Phoca Cart Filter Module](https://github.com/PhocaCz/PhocaCartFilterModule/blob/master/mod_phocacart_filter.png)
+![Phoca Cart Filter Module](https://github.com/PhocaCz/PhocaCartFilterModule/blob/master/mod_phocacart_filter.png?raw=true)
 
 # Phoca Cart Filter Module
 
@@ -56,7 +56,7 @@ Phoca Cart Filter Module - a Joomla! CMS module which displays filtering form - 
 
 ## Version
 
-3.5.4
+3.5.5
 
 
 

@@ -209,5 +209,5 @@ if ($filter->load_component_media == 1) {
 	$media->loadSpec();
 }
 
-require(JModuleHelper::getLayoutPath('mod_phocacart_filter'));
+require(JModuleHelper::getLayoutPath('mod_phocacart_filter', $params->get('layout', 'default')));
 ?>
