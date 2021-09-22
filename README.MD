@@ -54,9 +54,13 @@ Phoca Cart Filter Module - a Joomla! CMS module which displays filtering form - 
 
 
 
+
+
+
+
 ## Version
 
-3.5.5
+3.5.7
 
 
 
