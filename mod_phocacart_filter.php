@@ -7,6 +7,8 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
  */
 
+use Joomla\CMS\HTML\HTMLHelper;
+
 defined('_JEXEC') or die;// no direct access
 
 if (!JComponentHelper::isEnabled('com_phocacart', true)) {
@@ -17,6 +19,11 @@ if (!JComponentHelper::isEnabled('com_phocacart', true)) {
 
 JLoader::registerPrefix('Phocacart', JPATH_ADMINISTRATOR . '/components/com_phocacart/libraries/phocacart');
 
+
+$s = PhocacartRenderStyle::getStyles();
+if ($s['c']['class-type'] != 'uikit') {
+	HTMLHelper::_('bootstrap.collapse', '');
+}
 
 $app		= JFactory::getApplication();
 $document 	= JFactory::getDocument();
