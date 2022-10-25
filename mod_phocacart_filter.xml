@@ -27,36 +27,33 @@
 	<config>
         <fields name="params" addfieldpath="/administrator/components/com_phocacart/models/fields">
             <fieldset name="basic">
+                <field name="phocahead1" type="phocahead" default="MOD_PHOCACART_FILTER_FIELD_HEAD_PRICE_OPTIONS" />
 
-
-                <field name="phocahead1" type="phocahead" default="MOD_PHOCACART_FILTER_FIELD_HEAD_PRICE_OPTIONS" label="" description=""/>
-
-                <field name="filter_price" type="list" class="btn-group btn-group-yesno" default="1" label="MOD_PHOCACART_FILTER_FIELD_FILTER_PRICE_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_PRICE_DESC">
-                    <option value="1">MOD_PHOCACART_FILTER_YES_TEXT</option>
+                <field name="filter_price" type="list" class="form-select-color-state" filter="integer" validate="options" default="1" label="MOD_PHOCACART_FILTER_FIELD_FILTER_PRICE_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_PRICE_DESC">
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                    <option value="1">MOD_PHOCACART_FILTER_YES_TEXT</option>
                     <option value="2">MOD_PHOCACART_FILTER_YES_RANGE</option>
                     <option value="3">MOD_PHOCACART_FILTER_YES_TEXT_AND_RANGE</option>
                 </field>
 
-                <field name="limit_price_category" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_PRICE_ACTIVE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_PRICE_ACTIVE_CATEGORY_DESC">
-                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                <field name="limit_price_category" type="radio" showon="filter_price!:0" layout="joomla.form.field.radio.switcher" filter="integer" validate="options" default="0" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_PRICE_ACTIVE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_PRICE_ACTIVE_CATEGORY_DESC">
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
                 </field>
 
+                <field name="phocahead2" type="phocahead" default="MOD_PHOCACART_FILTER_FIELD_HEAD_TAG_LABEL_OPTIONS" />
 
-                <field name="phocahead2" type="phocahead" default="MOD_PHOCACART_FILTER_FIELD_HEAD_TAG_LABEL_OPTIONS" label="" description=""/>
-
-                <field name="filter_tag" type="radio" class="btn-group btn-group-yesno" default="1" label="MOD_PHOCACART_FILTER_FIELD_FILTER_TAGS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_TAGS_DESC">
-                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                <field name="filter_tag" type="radio" layout="joomla.form.field.radio.switcher" filter="integer" validate="options" default="1" label="MOD_PHOCACART_FILTER_FIELD_FILTER_TAGS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_TAGS_DESC">
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
                 </field>
 
-                <field name="limit_tags_category" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_TAGS_ACTIVE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_TAGS_ACTIVE_CATEGORY_DESC">
-                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                <field name="limit_tags_category" type="radio" showon="filter_tag:1" layout="joomla.form.field.radio.switcher" filter="integer" validate="options" default="0" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_TAGS_ACTIVE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_TAGS_ACTIVE_CATEGORY_DESC">
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
                 </field>
 
-                <field name="ordering_tag" type="list" default="1" label="MOD_PHOCACART_FILTER_FIELD_TAG_ORDERING_LABEL" description="MOD_PHOCACART_FILTER_FIELD_TAG_ORDERING_DESC">
+                <field name="ordering_tag" type="list" showon="filter_tag:1" default="1" label="MOD_PHOCACART_FILTER_FIELD_TAG_ORDERING_LABEL" description="MOD_PHOCACART_FILTER_FIELD_TAG_ORDERING_DESC">
                     <option value="1">MOD_PHOCACART_FILTER_ORDERING_ASC</option>
                     <option value="2">MOD_PHOCACART_FILTER_ORDERING_DESC</option>
                     <option value="3">MOD_PHOCACART_FILTER_TITLE_ASC</option>
@@ -67,17 +64,17 @@
                     <option value="8">MOD_PHOCACART_FILTER_PRODUCT_COUNT_DESC</option>
                 </field>
 
-                <field name="filter_label" type="radio" class="btn-group btn-group-yesno" default="1" label="MOD_PHOCACART_FILTER_FIELD_FILTER_LABELS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_LABELS_DESC">
-                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                <field name="filter_label" type="radio" layout="joomla.form.field.radio.switcher" filter="integer" validate="options" default="1" label="MOD_PHOCACART_FILTER_FIELD_FILTER_LABELS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_LABELS_DESC">
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
                 </field>
 
-                <field name="limit_labels_category" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_LABELS_ACTIVE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_LABELS_ACTIVE_CATEGORY_DESC">
-                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                <field name="limit_labels_category" type="radio" showon="filter_label:1" layout="joomla.form.field.radio.switcher" filter="integer" validate="options" default="0" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_LABELS_ACTIVE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_LABELS_ACTIVE_CATEGORY_DESC">
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
                 </field>
 
-                <field name="ordering_label" type="list" default="1" label="MOD_PHOCACART_FILTER_FIELD_LABEL_ORDERING_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LABEL_ORDERING_DESC">
+                <field name="ordering_label" type="list" showon="filter_label:1" default="1" label="MOD_PHOCACART_FILTER_FIELD_LABEL_ORDERING_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LABEL_ORDERING_DESC">
                     <option value="1">MOD_PHOCACART_FILTER_ORDERING_ASC</option>
                     <option value="2">MOD_PHOCACART_FILTER_ORDERING_DESC</option>
                     <option value="3">MOD_PHOCACART_FILTER_TITLE_ASC</option>
@@ -88,28 +85,26 @@
                     <option value="8">MOD_PHOCACART_FILTER_PRODUCT_COUNT_DESC</option>
                 </field>
 
-                <field name="limit_tag_count" default="-1" size="10" type="text" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_TAG_LABEL_COUNT_PRODUCTS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_TAG_LABEL_COUNT_PRODUCTS_DESC"/>
+                <field name="limit_tag_count" type="number" showon="filter_tag:1[OR]filter_label:1" min="-1" default="-1" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_TAG_LABEL_COUNT_PRODUCTS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_TAG_LABEL_COUNT_PRODUCTS_DESC"/>
 
-                <field name="display_tag_count" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_DISPLAY_PRODUCT_COUNT_TAGS_LABELS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_DISPLAY_PRODUCT_COUNT_TAGS_LABELS_DESC">
-                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                <field name="display_tag_count" type="radio" showon="filter_tag:1[OR]filter_label:1" layout="joomla.form.field.radio.switcher" filter="integer" validate="options" default="0" label="MOD_PHOCACART_FILTER_FIELD_DISPLAY_PRODUCT_COUNT_TAGS_LABELS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_DISPLAY_PRODUCT_COUNT_TAGS_LABELS_DESC">
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
                 </field>
 
+                <field name="phocahead4" type="phocahead" default="MOD_PHOCACART_FILTER_FIELD_HEAD_MANUFACTURER_OPTIONS" />
 
-
-                <field name="phocahead4" type="phocahead" default="MOD_PHOCACART_FILTER_FIELD_HEAD_MANUFACTURER_OPTIONS" label="" description=""/>
-
-                <field name="filter_manufacturer" type="radio" class="btn-group btn-group-yesno" default="1" label="MOD_PHOCACART_FILTER_FIELD_FILTER_MANUFACTURERS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_MANUFACTURERS_DESC">
-                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                <field name="filter_manufacturer" type="radio" layout="joomla.form.field.radio.switcher" filter="integer" validate="options" default="1" label="MOD_PHOCACART_FILTER_FIELD_FILTER_MANUFACTURERS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_MANUFACTURERS_DESC">
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
                 </field>
 
-                <field name="limit_manufacturers_category" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_MANUFACTURERS_ACTIVE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_MANUFACTURERS_ACTIVE_CATEGORY_DESC">
-                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                <field name="limit_manufacturers_category" showon="filter_manufacturer:1" type="radio" layout="joomla.form.field.radio.switcher" filter="integer" validate="options" default="0" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_MANUFACTURERS_ACTIVE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_MANUFACTURERS_ACTIVE_CATEGORY_DESC">
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
                 </field>
 
-                <field name="ordering_manufacturer" type="list" default="1" label="MOD_PHOCACART_FILTER_FIELD_MANUFACTURER_ORDERING_LABEL" description="MOD_PHOCACART_FILTER_FIELD_MANUFACTURER_ORDERING_DESC">
+                <field name="ordering_manufacturer" type="list" showon="filter_manufacturer:1" default="1" label="MOD_PHOCACART_FILTER_FIELD_MANUFACTURER_ORDERING_LABEL" description="MOD_PHOCACART_FILTER_FIELD_MANUFACTURER_ORDERING_DESC">
                     <option value="1">MOD_PHOCACART_FILTER_ORDERING_ASC</option>
                     <option value="2">MOD_PHOCACART_FILTER_ORDERING_DESC</option>
                     <option value="3">MOD_PHOCACART_FILTER_TITLE_ASC</option>
@@ -120,31 +115,28 @@
                     <option value="8">MOD_PHOCACART_FILTER_PRODUCT_COUNT_DESC</option>
                 </field>
 
-                <field name="manufacturer_title" default="" size="10" type="text" label="MOD_PHOCACART_FILTER_FIELD_MANUFACTURER_TITLE_LABEL" description="MOD_PHOCACART_FILTER_FIELD_MANUFACTURER_TITLE_DESC"/>
+                <field name="manufacturer_title" type="text" showon="filter_manufacturer:1" default="" label="MOD_PHOCACART_FILTER_FIELD_MANUFACTURER_TITLE_LABEL" description="MOD_PHOCACART_FILTER_FIELD_MANUFACTURER_TITLE_DESC"/>
 
+                <field name="limit_manufacturer_count" type="number" showon="filter_manufacturer:1"  default="-1" min="-1" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_MANUFACTURER_COUNT_PRODUCTS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_MANUFACTURER_COUNT_PRODUCTS_DESC"/>
 
-                <field name="limit_manufacturer_count" default="-1" size="10" type="text" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_MANUFACTURER_COUNT_PRODUCTS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_MANUFACTURER_COUNT_PRODUCTS_DESC"/>
-
-                <field name="display_manufacturer_count" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_DISPLAY_PRODUCT_COUNT_MANUFACTURERS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_DISPLAY_PRODUCT_COUNT_MANUFACTURERS_DESC">
-                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                <field name="display_manufacturer_count" type="radio" showon="filter_manufacturer:1" layout="joomla.form.field.radio.switcher" filter="integer" validate="options" default="0" label="MOD_PHOCACART_FILTER_FIELD_DISPLAY_PRODUCT_COUNT_MANUFACTURERS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_DISPLAY_PRODUCT_COUNT_MANUFACTURERS_DESC">
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
                 </field>
 
+                <field name="phocahead5" type="phocahead" default="MOD_PHOCACART_FILTER_FIELD_HEAD_ATTRIBUTE_OPTIONS" />
 
-
-                <field name="phocahead5" type="phocahead" default="MOD_PHOCACART_FILTER_FIELD_HEAD_ATTRIBUTE_OPTIONS" label="" description=""/>
-
-                <field name="filter_attributes" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_FILTER_ATTRIBUTES_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_ATTRIBUTES_DESC">
-                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                <field name="filter_attributes" type="radio" layout="joomla.form.field.radio.switcher" filter="integer" validate="options" default="0" label="MOD_PHOCACART_FILTER_FIELD_FILTER_ATTRIBUTES_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_ATTRIBUTES_DESC">
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
                 </field>
 
-                <field name="limit_attributes_category" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_ATTRIBUTES_ACTIVE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_ATTRIBUTES_ACTIVE_CATEGORY_DESC">
-                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                <field name="limit_attributes_category" type="radio" showon="filter_attributes:1" layout="joomla.form.field.radio.switcher" filter="integer" validate="options" default="0" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_ATTRIBUTES_ACTIVE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_ATTRIBUTES_ACTIVE_CATEGORY_DESC">
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
                 </field>
 
-                <field name="ordering_attribute" type="list" default="7" label="MOD_PHOCACART_FILTER_FIELD_ATTRIBUTE_ORDERING_LABEL" description="MOD_PHOCACART_FILTER_FIELD_ATTRIBUTE_ORDERING_DESC">
+                <field name="ordering_attribute" type="list" showon="filter_attributes:1" default="7" label="MOD_PHOCACART_FILTER_FIELD_ATTRIBUTE_ORDERING_LABEL" description="MOD_PHOCACART_FILTER_FIELD_ATTRIBUTE_ORDERING_DESC">
                     <option value="1">MOD_PHOCACART_FILTER_ID_ASC</option>
                     <option value="2">MOD_PHOCACART_FILTER_ID_DESC</option>
                     <option value="3">MOD_PHOCACART_FILTER_TITLE_ASC</option>
@@ -153,41 +145,38 @@
                     <option value="8">MOD_PHOCACART_FILTER_ORDERING_DESC</option>
                 </field>
 
+                <field name="phocahead6" type="phocahead" default="MOD_PHOCACART_FILTER_FIELD_HEAD_SPECIFICATION_OPTIONS" />
 
-                <field name="phocahead6" type="phocahead" default="MOD_PHOCACART_FILTER_FIELD_HEAD_SPECIFICATION_OPTIONS" label="" description=""/>
-
-                <field name="filter_specifications" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_FILTER_SPECIFICATIONS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_SPECIFICATIONS_DESC">
-                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                <field name="filter_specifications" type="radio" layout="joomla.form.field.radio.switcher" filter="integer" validate="options" default="0" label="MOD_PHOCACART_FILTER_FIELD_FILTER_SPECIFICATIONS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_SPECIFICATIONS_DESC">
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
                 </field>
 
-                <field name="limit_specifications_category" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_SPECIFICATIONS_ACTIVE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_SPECIFICATIONS_ACTIVE_CATEGORY_DESC">
-                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                <field name="limit_specifications_category" type="radio" showon="filter_specifications:1" layout="joomla.form.field.radio.switcher" filter="integer" validate="options" default="0" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_SPECIFICATIONS_ACTIVE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_SPECIFICATIONS_ACTIVE_CATEGORY_DESC">
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
                 </field>
 
-
-                <field name="ordering_specification" type="list" default="1" label="MOD_PHOCACART_FILTER_FIELD_SPECIFICATION_ORDERING_LABEL" description="MOD_PHOCACART_FILTER_FIELD_SPECIFICATION_ORDERING_DESC">
+                <field name="ordering_specification" type="list" showon="filter_specifications:1" default="1" label="MOD_PHOCACART_FILTER_FIELD_SPECIFICATION_ORDERING_LABEL" description="MOD_PHOCACART_FILTER_FIELD_SPECIFICATION_ORDERING_DESC">
                     <option value="1">MOD_PHOCACART_FILTER_ID_ASC</option>
                     <option value="2">MOD_PHOCACART_FILTER_ID_DESC</option>
                     <option value="3">MOD_PHOCACART_FILTER_TITLE_ASC</option>
                     <option value="4">MOD_PHOCACART_FILTER_TITLE_DESC</option>
                 </field>
 
+                <field name="phocahead3" type="phocahead" default="MOD_PHOCACART_FILTER_FIELD_HEAD_PARAMETER_OPTIONS" />
 
-                <field name="phocahead3" type="phocahead" default="MOD_PHOCACART_FILTER_FIELD_HEAD_PARAMETER_OPTIONS" label="" description=""/>
-
-                <field name="filter_parameter" type="radio" class="btn-group btn-group-yesno" default="1" label="MOD_PHOCACART_FILTER_FIELD_FILTER_PARAMETERS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_PARAMETERS_DESC">
-                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                <field name="filter_parameter" type="radio" layout="joomla.form.field.radio.switcher" filter="integer" validate="options" default="1" label="MOD_PHOCACART_FILTER_FIELD_FILTER_PARAMETERS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_PARAMETERS_DESC">
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
                 </field>
 
-                <field name="limit_parameters_category" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_PARAMETERS_ACTIVE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_PARAMETERS_ACTIVE_CATEGORY_DESC">
-                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                <field name="limit_parameters_category" type="radio" showon="filter_parameter:1" layout="joomla.form.field.radio.switcher" filter="integer" validate="options" default="0" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_PARAMETERS_ACTIVE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_PARAMETERS_ACTIVE_CATEGORY_DESC">
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
                 </field>
 
-                <field name="ordering_parameter" type="list" default="1" label="MOD_PHOCACART_FILTER_FIELD_PARAMETER_ORDERING_LABEL" description="MOD_PHOCACART_FILTER_FIELD_PARAMETER_ORDERING_DESC">
+                <field name="ordering_parameter" type="list" showon="filter_parameter:1" default="1" label="MOD_PHOCACART_FILTER_FIELD_PARAMETER_ORDERING_LABEL" description="MOD_PHOCACART_FILTER_FIELD_PARAMETER_ORDERING_DESC">
                     <option value="1">MOD_PHOCACART_FILTER_ORDERING_ASC</option>
                     <option value="2">MOD_PHOCACART_FILTER_ORDERING_DESC</option>
                     <option value="3">MOD_PHOCACART_FILTER_TITLE_ASC</option>
@@ -198,41 +187,39 @@
                     <option value="8">MOD_PHOCACART_FILTER_PRODUCT_COUNT_DESC</option>
                 </field>
 
-                <field name="limit_parameter_count" default="-1" size="10" type="text" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_PARAMETER_COUNT_PRODUCTS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_PARAMETER_COUNT_PRODUCTS_DESC"/>
+                <field name="limit_parameter_count" type="number" showon="filter_parameter:1" default="-1" min="-1" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_PARAMETER_COUNT_PRODUCTS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_PARAMETER_COUNT_PRODUCTS_DESC"/>
 
-                <field name="display_parameter_count" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_DISPLAY_PRODUCT_COUNT_PARAMETERS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_DISPLAY_PRODUCT_COUNT_PARAMETERS_DESC">
-                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                <field name="display_parameter_count" type="radio" showon="filter_parameter:1" layout="joomla.form.field.radio.switcher" filter="integer" validate="options" default="0" label="MOD_PHOCACART_FILTER_FIELD_DISPLAY_PRODUCT_COUNT_PARAMETERS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_DISPLAY_PRODUCT_COUNT_PARAMETERS_DESC">
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
                 </field>
 
+                <field name="phocahead7" type="phocahead" default="MOD_PHOCACART_FILTER_FIELD_HEAD_CATEGORY_OPTIONS" />
 
-                <field name="phocahead7" type="phocahead" default="MOD_PHOCACART_FILTER_FIELD_HEAD_CATEGORY_OPTIONS" label="" description=""/>
-
-                <field name="filter_category" type="list" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_FILTER_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_CATEGORY_DESC">
+                <field name="filter_category" type="list" class="form-select-color-state" filter="integer" validate="options" default="0" label="MOD_PHOCACART_FILTER_FIELD_FILTER_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_CATEGORY_DESC">
+                    <option value="0">MOD_PHOCACART_FILTER_NO</option>
                     <option value="1">MOD_PHOCACART_FILTER_YES_ACTIVE_CATEGORY</option>
                     <option value="2">MOD_PHOCACART_FILTER_YES_ALL_CATEGORIES</option>
-                    <option value="0">MOD_PHOCACART_FILTER_NO</option>
                 </field>
 
-                <field name="force_category" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_FORCE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FORCE_CATEGORY_DESC">
+                <field name="force_category" type="radio" showon="filter_category!:0" layout="joomla.form.field.radio.switcher" filter="integer" validate="options" default="0" label="MOD_PHOCACART_FILTER_FIELD_FORCE_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FORCE_CATEGORY_DESC">
+                    <option value="0">MOD_PHOCACART_FILTER_NO</option>
                     <option value="1">MOD_PHOCACART_FILTER_YES</option>
-                    <option value="0">MOD_PHOCACART_FILTER_NO</option>
                 </field>
 
-                <field name="remove_parameters_cat" type="radio" class="btn-group btn-group-yesno" default="1" label="MOD_PHOCACART_FILTER_FIELD_REMOVE_PARAMETERS_DESELECTING_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_REMOVE_PARAMETERS_DESELECTING_CATEGORY_DESC">
+                <field name="remove_parameters_cat" type="radio" showon="filter_category!:0" layout="joomla.form.field.radio.switcher" filter="integer" validate="options" default="1" label="MOD_PHOCACART_FILTER_FIELD_REMOVE_PARAMETERS_DESELECTING_CATEGORY_LABEL" description="MOD_PHOCACART_FILTER_FIELD_REMOVE_PARAMETERS_DESELECTING_CATEGORY_DESC">
+                    <option value="0">MOD_PHOCACART_FILTER_NO</option>
                     <option value="1">MOD_PHOCACART_FILTER_YES</option>
-                    <option value="0">MOD_PHOCACART_FILTER_NO</option>
                 </field>
 
+                <field name="limit_category_count" type="number" showon="filter_category!:0" default="-1" min="-1" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_CATEGORY_COUNT_PRODUCTS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_CATEGORY_COUNT_PRODUCTS_DESC"/>
 
-                <field name="limit_category_count" default="-1" size="10" type="text" label="MOD_PHOCACART_FILTER_FIELD_LIMIT_CATEGORY_COUNT_PRODUCTS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LIMIT_CATEGORY_COUNT_PRODUCTS_DESC"/>
-
-                <field name="display_category_count" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_DISPLAY_PRODUCT_COUNT_CATEGORIES_LABEL" description="MOD_PHOCACART_FILTER_FIELD_DISPLAY_PRODUCT_COUNT_CATEGORIES_DESC">
+                <field name="display_category_count" type="radio" showon="filter_category!:0" layout="joomla.form.field.radio.switcher" filter="integer" validate="options" default="0" label="MOD_PHOCACART_FILTER_FIELD_DISPLAY_PRODUCT_COUNT_CATEGORIES_LABEL" description="MOD_PHOCACART_FILTER_FIELD_DISPLAY_PRODUCT_COUNT_CATEGORIES_DESC">
+                    <option value="0">MOD_PHOCACART_FILTER_NO</option>
                     <option value="1">MOD_PHOCACART_FILTER_YES</option>
-                    <option value="0">MOD_PHOCACART_FILTER_NO</option>
                 </field>
 
-                <field name="ordering_category" type="list" default="1" label="MOD_PHOCACART_FILTER_FIELD_CATEGORY_ORDERING_LABEL" description="MOD_PHOCACART_FILTER_FIELD_CATEGORY_ORDERING_DESC">
+                <field name="ordering_category" type="list" showon="filter_category!:0" default="1" label="MOD_PHOCACART_FILTER_FIELD_CATEGORY_ORDERING_LABEL" description="MOD_PHOCACART_FILTER_FIELD_CATEGORY_ORDERING_DESC">
                     <option value="1">MOD_PHOCACART_FILTER_ORDERING_ASC</option>
                     <option value="2">MOD_PHOCACART_FILTER_ORDERING_DESC</option>
                     <option value="3">MOD_PHOCACART_FILTER_TITLE_ASC</option>
@@ -243,71 +230,67 @@
                     <option value="8">MOD_PHOCACART_FILTER_PRODUCT_COUNT_DESC</option>
                 </field>
 
+                <field name="phocahead8" type="phocahead" default="MOD_PHOCACART_FILTER_FIELD_HEAD_GENERAL_OPTIONS" />
 
-
-
-
-                <field name="phocahead8" type="phocahead" default="MOD_PHOCACART_FILTER_FIELD_HEAD_GENERAL_OPTIONS" label="" description=""/>
-
-                <field name="check_available_products" type="radio" class="btn-group btn-group-yesno" default="1" label="MOD_PHOCACART_FILTER_FIELD_CHECK_AVAILABLE_PRODUCTS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_CHECK_AVAILABLE_PRODUCTS_DESC">
-                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                <field name="check_available_products" type="radio" layout="joomla.form.field.radio.switcher" filter="integer" validate="options" default="1" label="MOD_PHOCACART_FILTER_FIELD_CHECK_AVAILABLE_PRODUCTS_LABEL" description="MOD_PHOCACART_FILTER_FIELD_CHECK_AVAILABLE_PRODUCTS_DESC">
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
                 </field>
 
-                <field name="enable_color_filter" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_ENABLE_COLOR_FILTER_ATTR_LABEL" description="MOD_PHOCACART_FILTER_FIELD_ENABLE_COLOR_FILTER_ATTR_DESC">
-                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                <field name="enable_color_filter" type="radio" layout="joomla.form.field.radio.switcher" filter="integer" validate="options" default="0" label="MOD_PHOCACART_FILTER_FIELD_ENABLE_COLOR_FILTER_ATTR_LABEL" description="MOD_PHOCACART_FILTER_FIELD_ENABLE_COLOR_FILTER_ATTR_DESC">
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
                 </field>
 
-                <field name="enable_image_filter" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_ENABLE_IMAGE_FILTER_ATTR_LABEL" description="MOD_PHOCACART_FILTER_FIELD_ENABLE_IMAGE_FILTER_ATTR_DESC">
-                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                <field name="enable_image_filter" type="radio" layout="joomla.form.field.radio.switcher" filter="integer" validate="options" default="0" label="MOD_PHOCACART_FILTER_FIELD_ENABLE_IMAGE_FILTER_ATTR_LABEL" description="MOD_PHOCACART_FILTER_FIELD_ENABLE_IMAGE_FILTER_ATTR_DESC">
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
                 </field>
 
-                <field name="image_style_image_filter" default="" size="10" type="text" label="MOD_PHOCACART_FILTER_FIELD_IMAGE_STYLE_IMAGE_FILTER_ATTR_LABEL" description="MOD_PHOCACART_FILTER_FIELD_IMAGE_STYLE_IMAGE_FILTER_ATTR_DESC"/>
+                <field name="image_style_image_filter" showon="enable_image_filter:1" default="" size="10" type="text" label="MOD_PHOCACART_FILTER_FIELD_IMAGE_STYLE_IMAGE_FILTER_ATTR_LABEL" description="MOD_PHOCACART_FILTER_FIELD_IMAGE_STYLE_IMAGE_FILTER_ATTR_DESC"/>
 
-                <field name="enable_color_filter_spec" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_ENABLE_COLOR_FILTER_SPEC_LABEL" description="MOD_PHOCACART_FILTER_FIELD_ENABLE_COLOR_FILTER_SPEC_DESC">
-                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                <field name="enable_color_filter_spec" type="radio" layout="joomla.form.field.radio.switcher" filter="integer" validate="options" default="0" label="MOD_PHOCACART_FILTER_FIELD_ENABLE_COLOR_FILTER_SPEC_LABEL" description="MOD_PHOCACART_FILTER_FIELD_ENABLE_COLOR_FILTER_SPEC_DESC">
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
                 </field>
 
-                <field name="enable_image_filter_spec" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_ENABLE_IMAGE_FILTER_SPEC_LABEL" description="MOD_PHOCACART_FILTER_FIELD_ENABLE_IMAGE_FILTER_SPEC_DESC">
-                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                <field name="enable_image_filter_spec" type="radio" layout="joomla.form.field.radio.switcher" filter="integer" validate="options" default="0" label="MOD_PHOCACART_FILTER_FIELD_ENABLE_IMAGE_FILTER_SPEC_LABEL" description="MOD_PHOCACART_FILTER_FIELD_ENABLE_IMAGE_FILTER_SPEC_DESC">
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
                 </field>
 
-                <field name="image_style_image_filter_spec" default="" size="10" type="text" label="MOD_PHOCACART_FILTER_FIELD_IMAGE_STYLE_IMAGE_FILTER_SPEC_LABEL" description="MOD_PHOCACART_FILTER_FIELD_IMAGE_STYLE_IMAGE_FILTER_SPEC_DESC"/>
+                <field name="image_style_image_filter_spec" showon="enable_image_filter_spec:1" default="" size="10" type="text" label="MOD_PHOCACART_FILTER_FIELD_IMAGE_STYLE_IMAGE_FILTER_SPEC_LABEL" description="MOD_PHOCACART_FILTER_FIELD_IMAGE_STYLE_IMAGE_FILTER_SPEC_DESC"/>
 
-
-                <field name="filter_language" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_PHOCACART_FILTER_FIELD_FILTER_LANGUAGE_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_LANGUAGE_DESC">
-                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                <field name="filter_language" type="radio" layout="joomla.form.field.radio.switcher" filter="integer" validate="options" default="0" label="MOD_PHOCACART_FILTER_FIELD_FILTER_LANGUAGE_LABEL" description="MOD_PHOCACART_FILTER_FIELD_FILTER_LANGUAGE_DESC">
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
                 </field>
 
-                <field name="open_filter_panel" type="list" class="btn-group btn-group-yesno" default="1" label="MOD_PHOCACART_FILTER_FIELD_OPEN_FILTER_PANEL_LABEL" description="MOD_PHOCACART_FILTER_FIELD_OPEN_FILTER_PANEL_DESC">
+                <field name="open_filter_panel" type="list" default="1" class="form-select-color-state" filter="integer" validate="options" label="MOD_PHOCACART_FILTER_FIELD_OPEN_FILTER_PANEL_LABEL" description="MOD_PHOCACART_FILTER_FIELD_OPEN_FILTER_PANEL_DESC">
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
                     <option value="1">MOD_PHOCACART_FILTER_YES</option>
                     <option value="2">MOD_PHOCACART_FILTER_YES_ONLY_IF_ACTIVE</option>
                 </field>
 
    
-                <field name="load_component_media" type="radio" class="btn-group btn-group-yesno" default="1" label="MOD_PHOCACART_FILTER_FIELD_LOAD_COMPONENT_MEDIA_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LOAD_COMPONENT_MEDIA_DESC">
-                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
+                <field name="load_component_media" type="radio" layout="joomla.form.field.radio.switcher" filter="integer" validate="options" default="1" label="MOD_PHOCACART_FILTER_FIELD_LOAD_COMPONENT_MEDIA_LABEL" description="MOD_PHOCACART_FILTER_FIELD_LOAD_COMPONENT_MEDIA_DESC">
                     <option value="0">MOD_PHOCACART_FILTER_NO</option>
+                    <option value="1">MOD_PHOCACART_FILTER_YES</option>
                 </field>
 
             </fieldset>
-			<fieldset name="advanced">
-				<field name="layout" type="modulelayout" label="JFIELD_ALT_LAYOUT_LABEL" description="JFIELD_ALT_MODULE_LAYOUT_DESC"/>
-				<field name="moduleclass_sfx" type="textarea" label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL" description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" rows="3"/>
-				<field name="cache" type="list" label="COM_MODULES_FIELD_CACHING_LABEL" description="COM_MODULES_FIELD_CACHING_DESC" default="1" filter="integer">
-					<option value="1">JGLOBAL_USE_GLOBAL</option>
-					<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
-				</field>
-				<field name="cache_time" type="number" label="COM_MODULES_FIELD_CACHE_TIME_LABEL" description="COM_MODULES_FIELD_CACHE_TIME_DESC" default="900" filter="integer"/>
-				<field name="cachemode" type="hidden" default="static">
-					<option value="static"/>
-				</field>
+
+            <fieldset name="advanced">
+                <field name="layout" type="modulelayout" class="form-select" validate="moduleLayout" label="JFIELD_ALT_LAYOUT_LABEL" description="JFIELD_ALT_MODULE_LAYOUT_DESC"/>
+                <field name="moduleclass_sfx" type="textarea" rows="3" label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL" description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"/>
+                <field name="owncache" type="list" default="0" filter="integer" validate="options" label="COM_MODULES_FIELD_CACHING_LABEL" description="COM_MODULES_FIELD_CACHING_DESC">
+                    <option value="1">JGLOBAL_USE_GLOBAL</option>
+                    <option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+                </field>
+                <field name="cache_time" type="number" label="COM_MODULES_FIELD_CACHE_TIME_LABEL" description="COM_MODULES_FIELD_CACHE_TIME_DESC" default="900" filter="integer"/>
+                <field name="cachemode" type="hidden" default="static">
+                    <option value="static"/>
+                </field>
             </fieldset>
         </fields>
     </config>
