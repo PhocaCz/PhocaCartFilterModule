@@ -16,6 +16,7 @@
 		<filename module="mod_phocacart_filter">helper.php</filename>
 		<filename module="mod_phocacart_filter">index.html</filename>
 		<filename module="mod_phocacart_filter">mod_phocacart_filter.php</filename>
+		<filename module="mod_phocacart_filter">manifest.xml</filename>
 	</files>
 
 	<languages>
