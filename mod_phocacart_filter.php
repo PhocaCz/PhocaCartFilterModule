@@ -31,7 +31,7 @@ $lang 		= JFactory::getLanguage();
 //$lang->load('com_phocacart.sys');
 $lang->load('com_phocacart');
 
-$moduleclass_sfx 					= htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8');
+$moduleclass_sfx 					= htmlspecialchars((string)$params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8');
 
 $filter								    = new PhocacartFilter();
 $filter->category					    = $params->get( 'filter_category', 0 );
@@ -41,6 +41,7 @@ $filter->parameter						= $params->get( 'filter_parameter', 1 );
 $filter->manufacturer 				    = $params->get( 'filter_manufacturer', 1 );
 $filter->manufacturer_title 		    = $params->get( 'manufacturer_title', '' );
 $filter->price 						    = $params->get( 'filter_price', 1 );
+$filter->ignore_zero_price 			    = $params->get( 'ignore_zero_price', 0 );
 $filter->attributes 				    = $params->get( 'filter_attributes', 0 );
 $filter->specifications 			    = $params->get( 'filter_specifications', 0 );
 $filter->enable_color_filter 		    = $params->get( 'enable_color_filter', 0 );
@@ -82,7 +83,6 @@ $language = '';
 if ($filter->filter_language == 1) {
 	$language	= $lang->getTag();
 }
-
 
 
 
