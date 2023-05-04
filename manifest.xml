@@ -23,18 +23,19 @@
 		<description><![CDATA[ Phoca Cart Filter Module - a Joomla! CMS module which displays filtering form - to filter Phoca Cart products. ]]></description>
 		<element>mod_phocacart_filter</element>
 		<type>module</type>
-		<version>4.0.0</version>
-		<infourl title="Phoca Cart Filter Module 4.0.0">https://www.phoca.cz/</infourl>
+		<version>4.0.7</version>
+		<infourl title="Phoca Cart Filter Module 4.0.7">https://www.phoca.cz/</infourl>
 		<downloads>
-			<downloadurl type="full" format="zip">https://github.com/PhocaCz/PhocaCartFilterModule/releases/download/4.0.0/mod_phocacart_filter_v4.0.0.zip</downloadurl>
+			<downloadurl type="full" format="zip">https://github.com/PhocaCz/PhocaCartFilterModule/releases/download/4.0.7/mod_phocacart_filter_v4.0.7.zip</downloadurl>
 		</downloads>
+		<sha512>d32a00bc4b822596b330f5e4b9150fcc9d0b00ac3ad400c4e47b79ae6fe9bc895ce4f309cb35eed7dd3bdf9a5c2b9302a271420550fc959aefccc3c9299af305</sha512>
 		<tags>
 			<tag>stable</tag>
 		</tags>
 		<maintainer><![CDATA[ Phoca.cz ]]></maintainer>
 		<maintainerurl>https://www.phoca.cz/</maintainerurl>
 		<section>Updates</section>
-		<targetplatform name="joomla" version="4.[0]"/>
+		<targetplatform name="joomla" version="4.[012]"/>
 		<client>site</client>
 	</update>
 </updates>
