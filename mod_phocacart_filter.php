@@ -7,13 +7,18 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
  */
 
+defined('_JEXEC') or die;// no direct access
+use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Helper\ModuleHelper;
 
 defined('_JEXEC') or die;// no direct access
+$app		= Factory::getApplication();
+if (!ComponentHelper::isEnabled('com_phocacart', true)) {
 
-if (!JComponentHelper::isEnabled('com_phocacart', true)) {
-	$app = JFactory::getApplication();
-	$app->enqueueMessage(JText::_('Phoca Cart Error'), JText::_('Phoca Cart is not installed on your system'), 'error');
+	$app->enqueueMessage(Text::_('Phoca Cart Error'), Text::_('Phoca Cart is not installed on your system'), 'error');
 	return;
 }
 
@@ -25,9 +30,8 @@ if ($s['c']['class-type'] != 'uikit') {
 	HTMLHelper::_('bootstrap.collapse', '');
 }
 
-$app		= JFactory::getApplication();
-$document 	= JFactory::getDocument();
-$lang 		= JFactory::getLanguage();
+$document 	= Factory::getDocument();
+$lang 		= Factory::getLanguage();
 //$lang->load('com_phocacart.sys');
 $lang->load('com_phocacart');
 
@@ -91,7 +95,7 @@ $isItemsView 				= PhocacartRoute::isItemsView();
 
 $urlItemsView 				= PhocacartRoute::getJsItemsRoute($filter->category);
 $urlItemsViewWithoutParams 	= PhocacartRoute::getJsItemsRouteWithoutParams();
-$config 					= JFactory::getConfig();
+$config 					= $app->getConfig();
 $sef						= $config->get('sef', 1);
 
 
@@ -216,5 +220,5 @@ if ($filter->load_component_media == 1) {
 	$media->loadSpec();
 }
 
-require(JModuleHelper::getLayoutPath('mod_phocacart_filter', $params->get('layout', 'default')));
+require(ModuleHelper::getLayoutPath('mod_phocacart_filter', $params->get('layout', 'default')));
 ?>

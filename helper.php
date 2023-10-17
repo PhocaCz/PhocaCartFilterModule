@@ -7,30 +7,35 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
  */
 
-defined('_JEXEC') or die;
+defined('_JEXEC') or die;// no direct access
+use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Factory;
+use Joomla\Registry\Registry;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Helper\ModuleHelper;
 
 class ModPhocaCartFilterHelper
 {
 	public static function getAjax() {
 
 		jimport('joomla.application.module.helper');
-		if (!JComponentHelper::isEnabled('com_phocacart')) {
-			echo '<div class="alert alert-error alert-danger">'.JText::_('Phoca Cart Error') . ' - ' . JText::_('Phoca Cart is not installed on your system').'</div>';
+		if (!ComponentHelper::isEnabled('com_phocacart')) {
+			echo '<div class="alert alert-error alert-danger">'.Text::_('Phoca Cart Error') . ' - ' . Text::_('Phoca Cart is not installed on your system').'</div>';
 			return;
 		}
 
         JLoader::registerPrefix('Phocacart', JPATH_ADMINISTRATOR . '/components/com_phocacart/libraries/phocacart');
-		$lang = JFactory::getLanguage();
+		$lang = Factory::getLanguage();
 		$lang->load('com_phocacart');
 
-		$module = JModuleHelper::getModule('phocacart_filter');
+		$module = ModuleHelper::getModule('phocacart_filter');
 
 		if (!$module || (isset($module->id) && (int)$module->id < 1)) {
 		    // Module is not published
             return "";
         }
 
-		$params = new JRegistry();
+		$params = new Registry();
 		$params->loadString($module->params);
 
 		$filter								    = new PhocacartFilter();
