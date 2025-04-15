@@ -8,21 +8,27 @@
  */
 
 defined('_JEXEC') or die;// no direct access
+
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Helper\ModuleHelper;
 
-defined('_JEXEC') or die;// no direct access
-$app		= Factory::getApplication();
+$app = Factory::getApplication();
+
 if (!ComponentHelper::isEnabled('com_phocacart', true)) {
 
 	$app->enqueueMessage(Text::_('Phoca Cart Error'), Text::_('Phoca Cart is not installed on your system'), 'error');
 	return;
 }
-
-JLoader::registerPrefix('Phocacart', JPATH_ADMINISTRATOR . '/components/com_phocacart/libraries/phocacart');
+if (file_exists(JPATH_ADMINISTRATOR . '/components/com_phocacart/libraries/bootstrap.php')) {
+	// Joomla 5 and newer
+	require_once(JPATH_ADMINISTRATOR . '/components/com_phocacart/libraries/bootstrap.php');
+} else {
+	// Joomla 4
+	JLoader::registerPrefix('Phocacart', JPATH_ADMINISTRATOR . '/components/com_phocacart/libraries/phocacart');
+}
 
 
 $s = PhocacartRenderStyle::getStyles();
@@ -88,19 +94,12 @@ if ($filter->filter_language == 1) {
 	$language	= $lang->getTag();
 }
 
-
-
-
 $isItemsView 				= PhocacartRoute::isItemsView();
 
 $urlItemsView 				= PhocacartRoute::getJsItemsRoute($filter->category);
 $urlItemsViewWithoutParams 	= PhocacartRoute::getJsItemsRouteWithoutParams();
 $config 					= $app->getConfig();
 $sef						= $config->get('sef', 1);
-
-
-
-
 
 /* Difference between - Active category vs. All categories
  * Active category - Url gets ID parameter and it can be only one ID: id=1:abc
@@ -206,11 +205,23 @@ $js[] = ' ';
 
 $document->addScriptDeclaration(implode("\n", $js));*/
 
+// If we limit some parametr to active category, we need to inform the Javascript because in JS
+// it is decided if the parametr list is reloaded by ajax (e.g. if you change category, and parameters are limited by active category,
+// the list of parameters - listed in filter module needs to be ajax reloaded)
 
+$limitToActiveCategory = 0;
+if ($filter->limit_attributes_category == 1 ||
+	$filter->limit_tags_category == 1 ||
+	$filter->limit_labels_category == 1 ||
+	$filter->limit_parameters_category == 1 ||
+	$filter->limit_price_category == 1 ||
+	$filter->limit_manufacturers_category == 1 ||
+	$filter->limit_specifications_category  == 1 ) {
+	$limitToActiveCategory = 1;
+}
 
 $document->addScriptOptions('phVarsModPhocacartFilter', array('isItemsView' => (int)$isItemsView, 'urlItemsView' => $urlItemsView, 'urlItemsViewWithoutParams' => $urlItemsViewWithoutParams, 'isSEF' => $sef ));
-$document->addScriptOptions('phParamsModPhocacartFilter', array('removeParametersCat' => (int)$filter->remove_parameters_cat));
-
+$document->addScriptOptions('phParamsModPhocacartFilter', array('removeParametersCat' => (int)$filter->remove_parameters_cat, 'limitToActiveCategory' => (int)$limitToActiveCategory));
 
 $s = PhocacartRenderStyle::getStyles();
 if ($filter->load_component_media == 1) {

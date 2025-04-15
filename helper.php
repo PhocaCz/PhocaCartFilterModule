@@ -19,12 +19,24 @@ class ModPhocaCartFilterHelper
 	public static function getAjax() {
 
 		jimport('joomla.application.module.helper');
-		if (!ComponentHelper::isEnabled('com_phocacart')) {
-			echo '<div class="alert alert-error alert-danger">'.Text::_('Phoca Cart Error') . ' - ' . Text::_('Phoca Cart is not installed on your system').'</div>';
-			return;
-		}
 
-        JLoader::registerPrefix('Phocacart', JPATH_ADMINISTRATOR . '/components/com_phocacart/libraries/phocacart');
+
+        $app = Factory::getApplication();
+        $document = Factory::getDocument();
+
+        if (!ComponentHelper::isEnabled('com_phocacart')) {
+            echo '<div class="alert alert-error alert-danger">'.Text::_('Phoca Cart Error') . ' - ' . Text::_('Phoca Cart is not installed on your system').'</div>';
+			return;
+        }
+        if (file_exists(JPATH_ADMINISTRATOR . '/components/com_phocacart/libraries/bootstrap.php')) {
+            // Joomla 5 and newer
+            require_once(JPATH_ADMINISTRATOR . '/components/com_phocacart/libraries/bootstrap.php');
+        } else {
+            // Joomla 4
+            JLoader::registerPrefix('Phocacart', JPATH_ADMINISTRATOR . '/components/com_phocacart/libraries/phocacart');
+        }
+
+
 		$lang = Factory::getLanguage();
 		$lang->load('com_phocacart');
 
