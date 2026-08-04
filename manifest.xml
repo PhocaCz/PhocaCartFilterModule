@@ -59,4 +59,24 @@
 		<targetplatform name="joomla" version="5\.*"/>
 		<client>site</client>
 	</update>
+	<update>
+		<name><![CDATA[ Phoca Cart Filter Module ]]></name>
+		<description><![CDATA[ Phoca Cart Filter Module - a Joomla! CMS module which displays filtering form - to filter Phoca Cart products. ]]></description>
+		<element>mod_phocacart_filter</element>
+		<type>module</type>
+		<version>6.1.6</version>
+		<infourl title="Phoca Cart Filter Module 6.1.6">https://www.phoca.cz/</infourl>
+		<downloads>
+			<downloadurl type="full" format="zip">https://github.com/PhocaCz/PhocaCartFilterModule/releases/download/6.1.6/mod_phocacart_filter_v6.1.6.zip</downloadurl>
+		</downloads>
+		<sha512>ef4b65a9d1f1c8bb292c95489932a51b0aa7710dcd23966115633ea209ef4444f34d71872e2b370d6106715b2f05560af5c17a9af1f3356f1fb53c8cf8a3b037</sha512>
+		<tags>
+			<tag>stable</tag>
+		</tags>
+		<maintainer><![CDATA[ Phoca.cz ]]></maintainer>
+		<maintainerurl>https://www.phoca.cz/</maintainerurl>
+		<section>Updates</section>
+		<targetplatform name="joomla" version="6\.*"/>
+		<client>site</client>
+	</update>
 </updates>

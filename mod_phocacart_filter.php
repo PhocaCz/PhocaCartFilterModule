@@ -88,6 +88,38 @@ $filter->display_manufacturer_count		= $params->get( 'display_manufacturer_count
 $filter->check_available_products		= $params->get( 'check_available_products', 1 );
 $filter->remove_parameters_cat			= $params->get( 'remove_parameters_cat', 0 );
 $filter->load_component_media			= $params->get( 'load_component_media', 1 );
+$filter->filter_label_horizontal_layout = $params->get( 'filter_label_horizontal_layout', 0 );
+
+if ((int)$filter->filter_label_horizontal_layout > 0) {
+	$moduleclass_sfx = $moduleclass_sfx . ' ph-filter-label-box';
+}
+
+$view 						= $app->getInput()->get('view', '');
+$option 					= $app->getInput()->get('option', '');
+$idCom						= $app->getInput()->get('id', '');
+
+$p = [];
+$p['display_view'] 			= $params->get( 'display_view', '');
+$p['display_option'] 		= $params->get( 'display_option', '');
+$p['display_id'] 			= $params->get( 'display_id', '');
+$optionA 	= array_map('trim', explode(',', $p['display_option']));// Remove spaces
+$viewA 		= array_map('trim', explode(',', $p['display_view']));
+$idA 		= array_map('trim', explode(',', $p['display_id']));
+$optionA	= array_filter($optionA);// Remove empty values from array
+$viewA 		= array_filter($viewA);
+$idA 		= array_filter($idA);
+
+if (empty($optionA) && empty($viewA) && empty($idA)) {
+	// OK - all parameters are not set
+} else if (!empty($optionA) && in_array($option, $optionA) && empty($viewA) && empty($idA)) {
+	// OK - only option is set and it meets the criteria
+} else if (!empty($optionA) && in_array($option, $optionA) && !empty($viewA) && in_array($view, $viewA) && empty($idA)) {
+	// OK - option and view is set and it meets the criteria
+} else if (!empty($optionA) && in_array($option, $optionA) && !empty($viewA) && in_array($view, $viewA) && !empty($idA) && in_array($idCom, $idA) ) {
+	// OK - option and view and ID is set and it meets the criteria
+} else {
+	return '';
+}
 
 $language = '';
 if ($filter->filter_language == 1) {
@@ -227,7 +259,7 @@ $s = PhocacartRenderStyle::getStyles();
 if ($filter->load_component_media == 1) {
 	$media = PhocacartRenderMedia::getInstance('main');
 	$media->loadBase();
-	$media->loadBootstrap();
+	//$media->loadBootstrap();
 	$media->loadSpec();
 }
 

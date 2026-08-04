@@ -6,12 +6,28 @@
  * @copyright Copyright (C) Jan Pavelka www.phoca.cz
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
  */
+
+use Joomla\CMS\Language\Text;
+
 defined('_JEXEC') or die;
 \Joomla\CMS\HTML\HTMLHelper::_('bootstrap.dropdown', '.dropdown', []);
 
 echo '<div class="ph-filter-box-horizontal'.$moduleclass_sfx .'">';
+if ($filter->filter_label_horizontal_layout == 1) {
+    echo '<div class="ph-filter-label">'.Text::_('MOD_PHOCACART_FILTER_FILTER_LABEL_TEXT').': </div>';
+} else if ($filter->filter_label_horizontal_layout == 2) {
+    echo '<div class="ph-filter-label">'. PhocacartRenderIcon::icon($s['i']['filter'], '', ' ') . '</div>';
+}
+if ((int)$filter->filter_label_horizontal_layout > 0) {
+    echo '<div class="ph-filter-content">';
+}
 echo $filter->renderList([
   'layout' => 'form_filter_horizontal',
   'wrapper_role' => '',
 ]);
+
+if ((int)$filter->filter_label_horizontal_layout > 0) {
+    echo '</div>';
+}
 echo '</div>';
+
